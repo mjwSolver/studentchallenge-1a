@@ -30,13 +30,16 @@ struct ContentView: View {
         NavigationView{
             ZStack{
                 
-                fallingTrash
+//                fallingTrash
                 
                 VStack {
                     
                     title
                     
-                    NavigationLink(destination: RecyclingLevel()) {
+                    playButton
+                    
+                    NavigationLink(destination:RecyclingLevel().navigationBarBackButtonHidden(true)
+                    ) {
                         Text("Recycling Waste")
                     }
                     NavigationLink(destination: FoodnGeneralLevel()){
@@ -173,15 +176,17 @@ struct ContentView: View {
         
     }
     
-    // MARK: Title
+    // MARK: Game Title
     
     var title: some View {
         
         return Image("GameTitle")
                 .resizable()
                 .scaledToFit()
+                .padding()
                 .frame(width: 500)
                 .padding(10)
+                .shadow(radius: 10)
                 .scaleEffect(self.titleScale)
                 .onAppear {
                     withAnimation(.easeInOut(duration: 3).repeatForever()){
@@ -195,7 +200,20 @@ struct ContentView: View {
     // MARK: PlayButton
     
     var playButton: some View {
-        Circle()
+        
+        // Include a NavigationLink here
+        
+        Text("PLAY".uppercased())
+            .font(.system(size: 40))
+            .fontWeight(.semibold)
+            .foregroundColor(.white)
+            .padding(20)
+            .background(
+                Color(red: 121/255, green: 96/255, blue: 182/255)
+                    .cornerRadius(20)
+                    .shadow(radius: 10)
+            )
+            
     }
     
     

@@ -38,42 +38,46 @@ struct RecyclingLevel: View {
     @State var waste5Scale: CGFloat = 1.0
     @State var waste6Scale: CGFloat = 1.0
     
+    @State var text1Opacity: CGFloat = 0.0
+    @State var text2Opacity: CGFloat = 0.0
+    @State var text3Opacity: CGFloat = 0.0
+    @State var text4Opacity: CGFloat = 0.0
+    @State var text5Opacity: CGFloat = 0.0
+    @State var text6Opacity: CGFloat = 0.0
+    
+    
     var body: some View {
         GeometryReader { geo in
             
             ZStack {
                 trash
-//                wasteBin
             }
-            
             
         }
         
     }
-    
-//    var wasteBin: some View {
-//        GeometryReader { geo in
-//            ZStack {
-//
-//            }
-//        }
-//    }
-    
+        
     var trash: some View {
+        
         GeometryReader { geo in
+            
+            let wasteBagPoint = CGPoint(x: geo.size.width / 2, y: geo.size.height / 1.5)
+            
+            let wasteBagShape = CGSize(width: geo.size.width / 6.5, height: geo.size.height / 8)
+            
             let wasteBagRect = CGRect(
-                x: geo.size.width / 2.3,
-                y: geo.size.height / 2,
-                width: geo.size.width / 6.5,
-                height: geo.size.height / 8
+                x: wasteBagPoint.x, y: wasteBagPoint.y,
+                width: wasteBagShape.width, height: wasteBagShape.height
             )
             
             ZStack{
+                
                 Image("GeneralWasteBin")
                     .resizable()
                     .scaledToFit()
                     .frame(width:150)
-                    .position(CGPoint(x: geo.size.width / 2.3, y: geo.size.height / 2))
+                    .border(.green)
+                    .position(wasteBagPoint)
                 
                 Image(BananaPeel.imageName)
                     .resizable()
@@ -85,8 +89,12 @@ struct RecyclingLevel: View {
                     .gesture(DragGesture()
                         .onChanged{ value in
                             waste1Position = value.location
+                            text1Opacity = 1.0
                         }
                         .onEnded{ value in
+                            
+                            text1Opacity = 0.0
+                            
                             let wasteRect = CGRect(x: waste1Position.x, y: waste1Position.y, width: 100, height: 100)
                             
                             if wasteRect.intersects(wasteBagRect) {
@@ -140,50 +148,76 @@ struct RecyclingLevel: View {
                         }
                     )
                 
-                Image(CardboardBox.imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 175)
-                    .scaleEffect(waste3Scale)
-                    .opacity(waste3Opacity)
-                    .position(waste3Position)
-                    .gesture(DragGesture()
-                        .onChanged{ value in
-                            waste3Position = value.location
-                        }
-                        .onEnded{ value in
-                            let wasteRect = CGRect(x: waste3Position.x, y: waste3Position.y, width: 100, height: 100)
+                VStack {
+                    
+                    Text(CardboardBox.nameEN)
+                        .font(.system(size: 28, design: .rounded))
+                        .fontWeight(.heavy)
+                        .opacity(text3Opacity)
+                    Text(CardboardBox.nameKR)
+                        .font(.system(size: 36))
+                        .fontWeight(.semibold)
+                        .opacity(text3Opacity)
+                        .padding(.bottom, -12)
+                    
+                    Image(CardboardBox.imageName)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 175)
+                        .padding(10)
+                }
+                .scaleEffect(waste3Scale)
+                .opacity(waste3Opacity)
+                .position(waste3Position)
+                .gesture(DragGesture()
+                    .onChanged{ value in
+                        waste3Position = value.location
+                        text3Opacity = 1.0
+                    }
+                    .onEnded{ value in
+                        
+                        text3Opacity = 0.0
+                        
+                        let wasteRect = CGRect(x: waste3Position.x, y: waste3Position.y, width: 100, height: 100)
+                        
+                        if wasteRect.intersects(wasteBagRect) {
                             
-                            if wasteRect.intersects(wasteBagRect) {
+                            // If the waste meets the area of the waste bag, check if the category matches.
+                            
                                 
-                                // If the waste meets the area of the waste bag, check if the category matches.
-                                
-                                    
-                                // If the category matches, remove the waste from view.
-                                
-                                withAnimation {
-                                    waste3Scale = 0.0
-                                    waste3Opacity = 0.1
-                                }
-                                
-                            } else {
-                                withAnimation {
-                                    waste3Position = CGPoint(x: geo.size.width / 1.4, y: geo.size.height / 2.8)
-                                }
+                            // If the category matches, remove the waste from view.
+                            
+                            withAnimation {
+                                waste3Scale = 0.0
+                                waste3Opacity = 0.1
                             }
                             
+                        } else {
+                            withAnimation {
+                                waste3Position = CGPoint(x: geo.size.width / 1.4, y: geo.size.height / 2.8)
+                            }
                         }
-                    )
+                        
+                    }
+                )
                 
                 VStack {
+                    
+                    Text(PlasticBottle.nameEN)
+                        .font(.system(size: 28, design: .rounded))
+                        .fontWeight(.heavy)
+                        .opacity(text4Opacity)
+                    Text(PlasticBottle.nameKR)
+                        .font(.system(size: 36))
+                        .fontWeight(.semibold)
+                        .opacity(text4Opacity)
+                        .padding(.bottom, -12)
+                    
                     Image(PlasticBottle.imageName)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 75)
                         .padding(10)
-                    
-                    Text(PlasticBottle.nameEN)
-                    Text(PlasticBottle.nameKR)
                 }
                 .scaleEffect(waste4Scale)
                 .opacity(waste4Opacity)
@@ -191,8 +225,12 @@ struct RecyclingLevel: View {
                 .gesture(DragGesture()
                     .onChanged{ value in
                         waste4Position = value.location
+                        text4Opacity = 1.0
                     }
                     .onEnded{ value in
+                        
+                        text4Opacity = 0.0
+                        
                         let wasteRect = CGRect(x: waste4Position.x, y: waste4Position.y, width: 100, height: 100)
                         
                         if wasteRect.intersects(wasteBagRect) {
@@ -210,6 +248,8 @@ struct RecyclingLevel: View {
                         } else {
                             withAnimation {
                                 waste4Position = CGPoint(x: geo.size.width / 2.8, y: geo.size.height / 2.7)
+                                
+                                
                             }
                         }
                         

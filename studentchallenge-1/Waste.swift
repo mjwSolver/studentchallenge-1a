@@ -39,8 +39,9 @@ struct Waste: Hashable {
 
 extension Waste {
     
-    // MARK: I contribute most of my designs from an
+    // MARK: Design Contribution and Credit
     // Image by pch.vector on Freepik
+    // Waste and Recycling
     
     static let BananaPeel = Waste(nameEN: "Banana Peel", nameKR: "바나나 껍질", imageName: "BananaPeel", category: .food)
     static let MelonRind = Waste(nameEN: "Melon Rind", nameKR: "멜론 껍질", imageName: "MelonRind", category: .food)
@@ -50,7 +51,7 @@ extension Waste {
     static let SodaCan = Waste(nameEN: "Soda Can", nameKR: "탄산 캔", imageName: "SodaCan", category: .metal)
     static let BrownEggShell = Waste(nameEN: "Brown Egg Shell", nameKR: "계란 껍질", imageName: "BrownEggShell", category: .general)
     static let SaltedEggShell = Waste(nameEN: "Salted Egg Shell", nameKR: "계란 껍질", imageName: "SaltedEggShell", category: .general)
-    static let CrushedBottleWhite = Waste(nameEN: "Crushed Bottle White", nameKR: "플라스틱병", imageName: "CrushedBottleWhite", category: .plastic)
+    static let CrushedBottleWhite = Waste(nameEN: "Plastic Bottle", nameKR: "플라스틱병", imageName: "CrushedBottleWhite", category: .plastic)
     static let CrushedBottleGreen = Waste(nameEN: "Plastic Bottle", nameKR: "플라스틱병", imageName: "CrushedBottleGreen", category: .plastic)
     static let PlasticBottleWhite = Waste(nameEN: "Plastic Bottle", nameKR: "플라스틱병", imageName: "PlasticBottleWhite", category: .plastic)
     static let PlasticBottleGreen = Waste(nameEN: "Plastic Bottle", nameKR: "플라스틱병", imageName: "PlasticBottleGreen", category: .plastic)
