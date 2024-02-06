@@ -49,8 +49,8 @@ extension Waste {
     static let Newspaper = Waste(nameEN: "Newspaper", nameKR: "신문", imageName: "Newspaper", category: .paper)
     static let MetalCan = Waste(nameEN: "Metal Can", nameKR: "금속 캔", imageName: "MetalCan", category: .metal)
     static let SodaCan = Waste(nameEN: "Soda Can", nameKR: "탄산 캔", imageName: "SodaCan", category: .metal)
-    static let BrownEggShell = Waste(nameEN: "Brown Egg Shell", nameKR: "계란 껍질", imageName: "BrownEggShell", category: .general)
-    static let SaltedEggShell = Waste(nameEN: "Salted Egg Shell", nameKR: "계란 껍질", imageName: "SaltedEggShell", category: .general)
+    static let BrownEggShell = Waste(nameEN: "Brown Egg Shell", nameKR: "갈색 계란 껍질", imageName: "BrownEggShell", category: .general)
+    static let SaltedEggShell = Waste(nameEN: "Salted Egg Shell", nameKR: "계란젓 껍질", imageName: "SaltedEggShell", category: .general)
     static let CrushedBottleWhite = Waste(nameEN: "Plastic Bottle", nameKR: "플라스틱병", imageName: "CrushedBottleWhite", category: .plastic)
     static let CrushedBottleGreen = Waste(nameEN: "Plastic Bottle", nameKR: "플라스틱병", imageName: "CrushedBottleGreen", category: .plastic)
     static let PlasticBottleWhite = Waste(nameEN: "Plastic Bottle", nameKR: "플라스틱병", imageName: "PlasticBottleWhite", category: .plastic)
@@ -74,23 +74,27 @@ extension Waste {
 }
 
 class WasteBin {
-    var name: String
+    var nameEN: String
+    var nameKR: String
     var imageName: String
+    var description: String
     var wasteCategory: WasteCategory
     
-    init(name: String, imageName: String, wasteCategory: WasteCategory) {
-        self.name = name
+    init(nameEN: String, nameKR: String, imageName: String, description: String, wasteCategory: WasteCategory) {
+        self.nameEN = nameEN
+        self.nameKR = nameKR
         self.imageName = imageName
+        self.description = description
         self.wasteCategory = wasteCategory
     }
     
 }
 
 extension WasteBin {
-    static let PaperBin = Waste(nameEN: "Paper Bin", nameKR: "종이류", imageName: "PaperBin", category: .paper)
-    static let PlasticBin = Waste(nameEN: "Plastic Bin", nameKR: "플라스틱류", imageName: "PlasticBin", category: .plastic)
-    static let GlassBottleBin = Waste(nameEN: "Class Bottle Bin", nameKR: "유리병", imageName: "", category: .glass)
-    static let MetalCanBin = Waste(nameEN: "Metal Bin", nameKR: "켄류", imageName: "MetalCanBin", category: .metal)
-    static let GeneralWasteBin = Waste(nameEN: "General Waste Bin", nameKR: "일반쓰레기통", imageName: "GeneralWasteBin", category: .general)
-    static let FoodWasteBin = Waste(nameEN: "Food Waste Bin", nameKR: "음식물 쓰레기", imageName: "", category: .food)
+    static let PaperBin = WasteBin(nameEN: "Paper Bin", nameKR: "종이류", imageName: "PaperBin", description: "Paper", wasteCategory: .paper)
+    static let PlasticBin = WasteBin(nameEN: "Plastic Bin", nameKR: "플라스틱류", imageName: "PlasticBin", description: "Plastic", wasteCategory: .plastic)
+    static let GlassBottleBin = WasteBin(nameEN: "Class Bottle Bin", nameKR: "유리병", imageName: "GlassBottleBin", description: "Glass Bottles", wasteCategory: .glass)
+    static let MetalCanBin = WasteBin(nameEN: "Metal Bin", nameKR: "켄류", imageName: "MetalCanBin", description: "Metal Cans", wasteCategory: .metal)
+    static let GeneralBin = WasteBin(nameEN: "General Bin", nameKR: "일반쓰레기통", imageName: "GeneralWasteBin", description: "General", wasteCategory: .general)
+    static let FoodWasteBin = WasteBin(nameEN: "Food Waste Bin", nameKR: "음식물 쓰레기", imageName: "", description: "Food", wasteCategory: .food)
 }

@@ -10,12 +10,14 @@ import SwiftUI
 
 struct RecyclingLevel: View {
     
-    var BananaPeel = Waste.BananaPeel
-    var EggShell = Waste.BrownEggShell
-    var CardboardBox = Waste.CardboardBox
-    var PlasticBottle = Waste.CrushedBottleWhite
-    var MelonRind = Waste.MelonRind
-    var MetalCan = Waste.MetalCan
+    // MARK: ALL Waste Data
+    
+    let BananaPeel: Waste = Waste.BananaPeel
+    let EggShell: Waste = Waste.BrownEggShell
+    let CardboardBox: Waste = Waste.CardboardBox
+    let PlasticBottle: Waste = Waste.CrushedBottleWhite
+    let MelonRind: Waste = Waste.MelonRind
+    let MetalCan: Waste = Waste.MetalCan
     
     @State var waste1Position = CGPoint.zero
     @State var waste2Position = CGPoint.zero
@@ -45,24 +47,33 @@ struct RecyclingLevel: View {
     @State var text5Opacity: CGFloat = 0.0
     @State var text6Opacity: CGFloat = 0.0
     
-    
+    // MARK: Structure Overview
     var body: some View {
         GeometryReader { geo in
             
             ZStack {
-                trash
+                wasteComponents
             }
             
         }
         
     }
-        
-    var trash: some View {
+    
+    
+    var wasteComponents: some View {
         
         GeometryReader { geo in
             
-            let wasteBagPoint = CGPoint(x: geo.size.width / 2, y: geo.size.height / 1.5)
+            // Define the  Initial / Starting CGPoints of each Waste Item
+            let waste1Point: CGPoint = CGPoint(x: geo.size.width / 4, y: geo.size.height / 2)
+            let waste2Point: CGPoint = CGPoint(x: geo.size.width / 1.2, y: geo.size.height / 2.4)
+            let waste3Point: CGPoint = CGPoint(x: geo.size.width / 1.4, y: geo.size.height / 2.8)
+            let waste4Point: CGPoint = CGPoint(x: geo.size.width / 2.8, y: geo.size.height / 2.7)
+            let waste5Point: CGPoint = CGPoint(x: geo.size.width / 7, y: geo.size.height / 3.6)
+            let waste6Point: CGPoint = CGPoint(x: geo.size.width / 4, y: geo.size.height / 3.5)
             
+            // Define the CGRect Parameters: CGPoint and CGSize
+            let wasteBagPoint = CGPoint(x: geo.size.width / 2, y: geo.size.height / 1.5)
             let wasteBagShape = CGSize(width: geo.size.width / 6.5, height: geo.size.height / 8)
             
             let wasteBagRect = CGRect(
@@ -75,17 +86,10 @@ struct RecyclingLevel: View {
                 Image("GeneralWasteBin")
                     .resizable()
                     .scaledToFit()
-                    .frame(width:150)
-                    .border(.green)
+                    .frame(width:200)
                     .position(wasteBagPoint)
                 
-                Image(BananaPeel.imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 150)
-                    .scaleEffect(waste1Scale)
-                    .opacity(waste1Opacity)
-                    .position(waste1Position)
+                createWasteContainer(theWaste: BananaPeel, textOpacity: text1Opacity, frameSize: 175, scale: waste1Scale, opacity: waste1Opacity, position: waste1Position)
                     .gesture(DragGesture()
                         .onChanged{ value in
                             waste1Position = value.location
@@ -101,7 +105,7 @@ struct RecyclingLevel: View {
                                 
                                 // If the waste meets the area of the waste bag, check if the category matches.
                                 
-                                    
+                                
                                 // If the category matches, remove the waste from view.
                                 withAnimation {
                                     waste1Scale = 0.0
@@ -109,31 +113,35 @@ struct RecyclingLevel: View {
                                 }
                             } else {
                                 withAnimation {
-                                    waste1Position = CGPoint(x: geo.size.width / 4, y: geo.size.height / 2)
+                                    waste1Position = waste1Point
                                 }
                             }
                         }
                     )
                 
-                Image(EggShell.imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 50)
-                    .scaleEffect(waste2Scale)
-                    .opacity(waste2Opacity)
-                    .position(waste2Position)
+                createWasteContainer(
+                    theWaste: EggShell,
+                    textOpacity: text2Opacity,
+                    frameSize: 50,
+                    scale: waste2Scale,
+                    opacity: waste2Opacity,
+                    position: waste2Position)
                     .gesture(DragGesture()
                         .onChanged{ value in
                             waste2Position = value.location
+                            text2Opacity = 1.0
                         }
                         .onEnded{ value in
+                            
+                            text2Opacity = 0
+                            
                             let wasteRect = CGRect(x: waste2Position.x, y: waste2Position.y, width: 100, height: 100)
                             
                             if wasteRect.intersects(wasteBagRect) {
                                 
                                 // If the waste meets the area of the waste bag, check if the category matches.
                                 
-                                    
+                                
                                 // If the category matches, remove the waste from view.
                                 withAnimation {
                                     waste2Scale = 0.0
@@ -141,34 +149,22 @@ struct RecyclingLevel: View {
                                 }
                             } else {
                                 withAnimation {
-                                    waste2Position = CGPoint(x: geo.size.width / 1.2, y: geo.size.height / 2.4)
+                                    waste2Position = waste2Point
                                 }
                             }
                             
                         }
                     )
                 
-                VStack {
-                    
-                    Text(CardboardBox.nameEN)
-                        .font(.system(size: 28, design: .rounded))
-                        .fontWeight(.heavy)
-                        .opacity(text3Opacity)
-                    Text(CardboardBox.nameKR)
-                        .font(.system(size: 36))
-                        .fontWeight(.semibold)
-                        .opacity(text3Opacity)
-                        .padding(.bottom, -12)
-                    
-                    Image(CardboardBox.imageName)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 175)
-                        .padding(10)
-                }
-                .scaleEffect(waste3Scale)
-                .opacity(waste3Opacity)
-                .position(waste3Position)
+                // Cardboard Box
+                createWasteContainer(
+                    theWaste: CardboardBox,
+                    textOpacity: text3Opacity,
+                    frameSize: 175,
+                    scale: waste3Scale,
+                    opacity: waste3Opacity,
+                    position: waste3Position
+                )
                 .gesture(DragGesture()
                     .onChanged{ value in
                         waste3Position = value.location
@@ -184,7 +180,7 @@ struct RecyclingLevel: View {
                             
                             // If the waste meets the area of the waste bag, check if the category matches.
                             
-                                
+                            
                             // If the category matches, remove the waste from view.
                             
                             withAnimation {
@@ -194,34 +190,22 @@ struct RecyclingLevel: View {
                             
                         } else {
                             withAnimation {
-                                waste3Position = CGPoint(x: geo.size.width / 1.4, y: geo.size.height / 2.8)
+                                waste3Position = waste3Point
                             }
                         }
                         
                     }
                 )
                 
-                VStack {
-                    
-                    Text(PlasticBottle.nameEN)
-                        .font(.system(size: 28, design: .rounded))
-                        .fontWeight(.heavy)
-                        .opacity(text4Opacity)
-                    Text(PlasticBottle.nameKR)
-                        .font(.system(size: 36))
-                        .fontWeight(.semibold)
-                        .opacity(text4Opacity)
-                        .padding(.bottom, -12)
-                    
-                    Image(PlasticBottle.imageName)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 75)
-                        .padding(10)
-                }
-                .scaleEffect(waste4Scale)
-                .opacity(waste4Opacity)
-                .position(waste4Position)
+                
+                createWasteContainer(
+                    theWaste: PlasticBottle,
+                    textOpacity: text4Opacity,
+                    frameSize: 75, scale:
+                        waste4Scale,
+                    opacity: waste4Opacity,
+                    position: waste4Position
+                )
                 .gesture(DragGesture()
                     .onChanged{ value in
                         waste4Position = value.location
@@ -237,7 +221,7 @@ struct RecyclingLevel: View {
                             
                             // If the waste meets the area of the waste bag, check if the category matches.
                             
-                                
+                            
                             // If the category matches, remove the waste from view.
                             
                             withAnimation {
@@ -247,8 +231,7 @@ struct RecyclingLevel: View {
                             
                         } else {
                             withAnimation {
-                                waste4Position = CGPoint(x: geo.size.width / 2.8, y: geo.size.height / 2.7)
-                                
+                                waste4Position = waste4Point
                                 
                             }
                         }
@@ -256,47 +239,77 @@ struct RecyclingLevel: View {
                     }
                 )
                 
+                // MelonRind
+                createWasteContainer(theWaste: MelonRind,
+                                     textOpacity: text5Opacity,
+                                     frameSize: 75,
+                                     scale: waste5Scale,
+                                     opacity: waste5Opacity,
+                                     position: waste5Position)
                 
-                Image(MelonRind.imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 75)
-                    .scaleEffect(waste5Scale)
-                    .opacity(waste5Opacity)
-                    .position(waste5Position)
+                // MetalCan
                 
-                Image(MetalCan.imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100)
-                    .scaleEffect(waste6Scale)
-                    .opacity(waste6Opacity)
-                    .position(waste6Position)
+                createWasteContainer(theWaste: MetalCan,
+                                     textOpacity: text6Opacity,
+                                     frameSize: 100,
+                                     scale: waste6Scale,
+                                     opacity: waste6Opacity,
+                                     position: waste6Position)
+                
                 
             }
             .onAppear {
                 // Define the Default Position
-                waste1Position = CGPoint(x: geo.size.width / 4, y: geo.size.height / 2)
-                waste2Position = CGPoint(x: geo.size.width / 1.2, y: geo.size.height / 2.4)
-                waste3Position = CGPoint(x: geo.size.width / 1.4, y: geo.size.height / 2.8)
-                waste4Position = CGPoint(x: geo.size.width / 2.8, y: geo.size.height / 2.7)
-                waste5Position = CGPoint(x: geo.size.width / 7, y: geo.size.height / 3.6)
-                waste6Position = CGPoint(x: geo.size.width / 5, y: geo.size.height / 1.5)
+                waste1Position = waste1Point
+                waste2Position = waste2Point
+                waste3Position = waste3Point
+                waste4Position = waste4Point
+                waste5Position = waste5Point
+                waste6Position = waste6Point
             }
             .onChange(of: geo.size) { _ in
                 // Return to the Default Position
-                waste1Position = CGPoint(x: geo.size.width / 4, y: geo.size.height / 2)
-                waste2Position = CGPoint(x: geo.size.width / 1.2, y: geo.size.height / 2.4)
-                waste3Position = CGPoint(x: geo.size.width / 1.4, y: geo.size.height / 2.8)
-                waste4Position = CGPoint(x: geo.size.width / 2.8, y: geo.size.height / 2.7)
-                waste5Position = CGPoint(x: geo.size.width / 7, y: geo.size.height / 3.6)
-                waste6Position = CGPoint(x: geo.size.width / 5, y: geo.size.height / 1.5)
+                waste1Position = waste1Point
+                waste2Position = waste2Point
+                waste3Position = waste3Point
+                waste4Position = waste4Point
+                waste5Position = waste5Point
+                waste6Position = waste6Point
                 
             }
         }
     }
     
-
+    func createWasteContainer(
+        theWaste: Waste, textOpacity: Double, frameSize: CGFloat,
+        scale: CGFloat, opacity: CGFloat, position: CGPoint
+    ) -> some View {
+        return VStack {
+            
+            Text(theWaste.nameEN)
+                .font(.system(size: 28, design: .rounded))
+                .fontWeight(.heavy)
+                .opacity(textOpacity)
+            
+            Text(theWaste.nameKR)
+                .font(.system(size: 36))
+                .fontWeight(.semibold)
+                .opacity(textOpacity)
+                .padding(.bottom, -12)
+            
+            Image(theWaste.imageName)
+                .resizable()
+                .scaledToFit()
+                .frame(width: frameSize)
+                .padding(10)
+            
+        }
+        .scaleEffect(scale)
+        .opacity(opacity)
+        .position(position)
+        
+    } // End of Function createWasteContainer
+    
 }
 
 struct RecyclingLevel_Previews: PreviewProvider {
