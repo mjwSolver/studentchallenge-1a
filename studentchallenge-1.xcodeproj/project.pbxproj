@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8321FD9F2B726EF3001B39F8 /* Facts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8321FD9E2B726EF3001B39F8 /* Facts.swift */; };
 		8330EAC02B61169300B1E62F /* studentchallenge_1App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330EABF2B61169300B1E62F /* studentchallenge_1App.swift */; };
 		8330EAC22B61169300B1E62F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330EAC12B61169300B1E62F /* ContentView.swift */; };
 		8330EAC42B61169400B1E62F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8330EAC32B61169400B1E62F /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 		8330EADC2B61169400B1E62F /* studentchallenge_1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330EADB2B61169400B1E62F /* studentchallenge_1UITests.swift */; };
 		8330EADE2B61169400B1E62F /* studentchallenge_1UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330EADD2B61169400B1E62F /* studentchallenge_1UITestsLaunchTests.swift */; };
 		8330EAEC2B627EC500B1E62F /* Waste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330EAEB2B627EC500B1E62F /* Waste.swift */; };
+		836E21672B73BEEE00B451EC /* BackgroundIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836E21662B73BEEE00B451EC /* BackgroundIntroductionView.swift */; };
 		83DF5CE02B66795F00CBA500 /* RecyclingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DF5CDF2B66795F00CBA500 /* RecyclingLevel.swift */; };
 		83DF5CE22B66797100CBA500 /* FoodnGeneralLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DF5CE12B66797100CBA500 /* FoodnGeneralLevel.swift */; };
 /* End PBXBuildFile section */
@@ -37,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8321FD9E2B726EF3001B39F8 /* Facts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Facts.swift; sourceTree = "<group>"; };
 		8330EABC2B61169300B1E62F /* studentchallenge-1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "studentchallenge-1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8330EABF2B61169300B1E62F /* studentchallenge_1App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentchallenge_1App.swift; sourceTree = "<group>"; };
 		8330EAC12B61169300B1E62F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		8330EADB2B61169400B1E62F /* studentchallenge_1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentchallenge_1UITests.swift; sourceTree = "<group>"; };
 		8330EADD2B61169400B1E62F /* studentchallenge_1UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentchallenge_1UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8330EAEB2B627EC500B1E62F /* Waste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Waste.swift; sourceTree = "<group>"; };
+		836E21662B73BEEE00B451EC /* BackgroundIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundIntroductionView.swift; sourceTree = "<group>"; };
 		83DF5CDF2B66795F00CBA500 /* RecyclingLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecyclingLevel.swift; sourceTree = "<group>"; };
 		83DF5CE12B66797100CBA500 /* FoodnGeneralLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodnGeneralLevel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +113,8 @@
 				8330EAC62B61169400B1E62F /* Preview Content */,
 				83DF5CDF2B66795F00CBA500 /* RecyclingLevel.swift */,
 				83DF5CE12B66797100CBA500 /* FoodnGeneralLevel.swift */,
+				8321FD9E2B726EF3001B39F8 /* Facts.swift */,
+				836E21662B73BEEE00B451EC /* BackgroundIntroductionView.swift */,
 			);
 			path = "studentchallenge-1";
 			sourceTree = "<group>";
@@ -269,8 +275,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				83DF5CE22B66797100CBA500 /* FoodnGeneralLevel.swift in Sources */,
+				8321FD9F2B726EF3001B39F8 /* Facts.swift in Sources */,
 				8330EAC22B61169300B1E62F /* ContentView.swift in Sources */,
 				8330EAC02B61169300B1E62F /* studentchallenge_1App.swift in Sources */,
+				836E21672B73BEEE00B451EC /* BackgroundIntroductionView.swift in Sources */,
 				8330EAEC2B627EC500B1E62F /* Waste.swift in Sources */,
 				83DF5CE02B66795F00CBA500 /* RecyclingLevel.swift in Sources */,
 			);

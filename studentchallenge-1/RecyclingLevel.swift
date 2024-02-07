@@ -10,6 +10,8 @@ import SwiftUI
 
 struct RecyclingLevel: View {
     
+    @Environment(\.presentationMode) var presentationMode
+    
     // MARK: ALL Waste Data
     
     let BananaPeel: Waste = Waste.BananaPeel
@@ -70,7 +72,7 @@ struct RecyclingLevel: View {
             let waste3Point: CGPoint = CGPoint(x: geo.size.width / 1.4, y: geo.size.height / 2.8)
             let waste4Point: CGPoint = CGPoint(x: geo.size.width / 2.8, y: geo.size.height / 2.7)
             let waste5Point: CGPoint = CGPoint(x: geo.size.width / 7, y: geo.size.height / 3.6)
-            let waste6Point: CGPoint = CGPoint(x: geo.size.width / 4, y: geo.size.height / 3.5)
+            let waste6Point: CGPoint = CGPoint(x: geo.size.width / 2, y: geo.size.height / 3.5)
             
             // Define the CGRect Parameters: CGPoint and CGSize
             let wasteBagPoint = CGPoint(x: geo.size.width / 2, y: geo.size.height / 1.5)
@@ -81,9 +83,11 @@ struct RecyclingLevel: View {
                 width: wasteBagShape.width, height: wasteBagShape.height
             )
             
+            let wasteBag: WasteBin = WasteBin.GeneralBin
+            
             ZStack{
                 
-                Image("GeneralWasteBin")
+                Image(wasteBag.imageName)
                     .resizable()
                     .scaledToFit()
                     .frame(width:200)
@@ -245,7 +249,36 @@ struct RecyclingLevel: View {
                                      frameSize: 75,
                                      scale: waste5Scale,
                                      opacity: waste5Opacity,
-                                     position: waste5Position)
+                                     position: waste5Position
+                ).gesture(DragGesture()
+                    .onChanged{ value in
+                        waste5Position = value.location
+                        text5Opacity = 1.0
+                    }
+                    .onEnded{ value in
+                        
+                        text5Opacity = 0
+                        
+                        let wasteRect = CGRect(x: waste5Position.x, y: waste5Position.y, width: 100, height: 100)
+                        
+                        if wasteRect.intersects(wasteBagRect) {
+                            
+                            // If the waste meets the area of the waste bag, check if the category matches.
+                            
+                            
+                            // If the category matches, remove the waste from view.
+                            withAnimation {
+                                waste5Scale = 0.0
+                                waste5Opacity = 0.1
+                            }
+                        } else {
+                            withAnimation {
+                                waste5Position = waste5Point
+                            }
+                        }
+                        
+                    }
+                )
                 
                 // MetalCan
                 
@@ -254,7 +287,36 @@ struct RecyclingLevel: View {
                                      frameSize: 100,
                                      scale: waste6Scale,
                                      opacity: waste6Opacity,
-                                     position: waste6Position)
+                                     position: waste6Position
+                ).gesture(DragGesture()
+                    .onChanged{ value in
+                        waste6Position = value.location
+                        text6Opacity = 1.0
+                    }
+                    .onEnded{ value in
+                        
+                        text6Opacity = 0
+                        
+                        let wasteRect = CGRect(x: waste6Position.x, y: waste6Position.y, width: 100, height: 100)
+                        
+                        if wasteRect.intersects(wasteBagRect) {
+                            
+                            // If the waste meets the area of the waste bag, check if the category matches.
+                            
+                            
+                            // If the category matches, remove the waste from view.
+                            withAnimation {
+                                waste6Scale = 0.0
+                                waste6Opacity = 0.1
+                            }
+                        } else {
+                            withAnimation {
+                                waste6Position = waste6Point
+                            }
+                        }
+                        
+                    }
+                )
                 
                 
             }

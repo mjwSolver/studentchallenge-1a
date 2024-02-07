@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     // MARK: wasteHeightPosition
-    // The value -50, is just enough to set the trash out of view as it descends
+    // The value -50, is just enough out of view as it descends
     @State private var waste1Height:CGFloat = -50
     @State private var waste2Height:CGFloat = -50
     @State private var waste3Height:CGFloat = -50
@@ -30,21 +30,20 @@ struct ContentView: View {
         NavigationView{
             ZStack{
                 
-//                fallingTrash
+                // The Falling Trash Component
+                fallingTrash
                 
                 VStack {
                     
+                    // The Seuraegi Title Component
                     title
                     
-                    playButton
-                    
-                    NavigationLink(destination:RecyclingLevel().navigationBarBackButtonHidden(true)
-                    ) {
-                        Text("Recycling Waste")
+                    // Play Button -> BackgroundIntroductionView
+                    NavigationLink(destination: BackgroundIntroductionView()
+                            .navigationBarBackButtonHidden(true)) {
+                        playButton
                     }
-                    NavigationLink(destination: FoodnGeneralLevel()){
-                        Text("Food and General Waste")
-                    }
+                
                 }
 
             }
@@ -186,10 +185,10 @@ struct ContentView: View {
                 .padding()
                 .frame(width: 500)
                 .padding(10)
-                .shadow(radius: 10)
+                .shadow(radius: 5)
                 .scaleEffect(self.titleScale)
                 .onAppear {
-                    withAnimation(.easeInOut(duration: 3).repeatForever()){
+                    withAnimation(.easeInOut(duration: 4).repeatForever()){
                         self.titleScale = 1.1
                     }
                     
@@ -204,7 +203,7 @@ struct ContentView: View {
         // Include a NavigationLink here
         
         Text("PLAY".uppercased())
-            .font(.system(size: 40))
+            .font(.system(size: 42))
             .fontWeight(.semibold)
             .foregroundColor(.white)
             .padding(20)
