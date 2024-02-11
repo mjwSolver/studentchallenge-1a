@@ -27,7 +27,7 @@ struct ContentView: View {
     // MARK: Overall Structure
     var body: some View {
         
-        NavigationView{
+        NavigationStack {
             ZStack{
                 
                 // The Falling Trash Component
@@ -208,7 +208,7 @@ struct ContentView: View {
             .foregroundColor(.white)
             .padding(20)
             .background(
-                Color(red: 121/255, green: 96/255, blue: 182/255)
+                Color("SeuraegiPurple")
                     .cornerRadius(20)
                     .shadow(radius: 10)
             )
