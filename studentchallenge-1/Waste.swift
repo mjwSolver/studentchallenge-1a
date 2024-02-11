@@ -16,6 +16,7 @@ enum WasteCategory {
     case general
 }
 
+// MARK: Waste Struct
 
 struct Waste: Hashable {
 
@@ -55,23 +56,28 @@ extension Waste {
     static let CrushedBottleGreen = Waste(nameEN: "Plastic Bottle", nameKR: "플라스틱병", imageName: "CrushedBottleGreen", category: .plastic)
     static let PlasticBottleWhite = Waste(nameEN: "Plastic Bottle", nameKR: "플라스틱병", imageName: "PlasticBottleWhite", category: .plastic)
     static let PlasticBottleGreen = Waste(nameEN: "Plastic Bottle", nameKR: "플라스틱병", imageName: "PlasticBottleGreen", category: .plastic)
+    static let GlassJar = Waste(nameEN:"Glass Jar" , nameKR: "유리 항아리", imageName: "GlassJar", category: .glass)
+    static let GlassJarCracked = Waste(nameEN:"Glass Jar" , nameKR: "유리 항아리", imageName: "GlassJarCracked", category: .glass)
     
     static let allSingleWaste = [
         BananaPeel, MelonRind, CardboardBox, Newspaper, MetalCan, SodaCan,
-        BrownEggShell, SaltedEggShell, CrushedBottleWhite, CrushedBottleGreen,
-        PlasticBottleWhite, PlasticBottleGreen
+        BrownEggShell, SaltedEggShell,
+        CrushedBottleWhite, CrushedBottleGreen, PlasticBottleWhite, PlasticBottleGreen,
+        GlassJar, GlassJarCracked
     ]
     
     static let BananaPeels = Waste(nameEN: "Banana Peels", nameKR: "바나나 껍질들", imageName: "BananaPeels", category: .food)
     static let EggShells = Waste(nameEN: "Egg Shells", nameKR: "계란 껍질들", imageName: "EggShells", category: .general)
     static let FishBones = Waste(nameEN: "Fish Bones", nameKR: "생선 가시들", imageName: "FishBones", category: .general)
-    static let MelonSkins = Waste(nameEN: "Melon Rinds", nameKR: "멜론 껍질들", imageName: "MelonSkins", category: .food)
+    static let MelonRinds = Waste(nameEN: "Melon Rinds", nameKR: "멜론 껍질들", imageName: "MelonRinds", category: .food)
     
     static let allClusterWaste = [
-        BananaPeels, EggShells, FishBones, MelonSkins
+        BananaPeels, EggShells, FishBones, MelonRinds
     ]
         
 }
+
+// MARK: WasteBin Class
 
 class WasteBin {
     var nameEN: String
@@ -97,4 +103,8 @@ extension WasteBin {
     static let MetalCanBin = WasteBin(nameEN: "Metal Bin", nameKR: "켄류", imageName: "MetalCanBin", description: "Metal Cans", wasteCategory: .metal)
     static let GeneralBin = WasteBin(nameEN: "General Bin", nameKR: "일반쓰레기통", imageName: "GeneralWasteBin", description: "General", wasteCategory: .general)
     static let FoodWasteBin = WasteBin(nameEN: "Food Waste Bin", nameKR: "음식물 쓰레기", imageName: "", description: "Food", wasteCategory: .food)
+    
+    static let allWasteBins = [
+        PaperBin, PlasticBin, GlassBottleBin, MetalCanBin, GeneralBin, FoodWasteBin
+    ]
 }

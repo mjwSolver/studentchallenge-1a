@@ -26,6 +26,7 @@ struct BackgroundIntroductionView: View {
                 VStack {
                     allLevelButtons
                 }
+                homeScreenButton
             }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
@@ -49,6 +50,29 @@ struct BackgroundIntroductionView: View {
                 }
         }
         
+    }
+    
+    private var homeScreenButton: some View {
+        GeometryReader {geo in
+            
+            // Button to go back a view
+            Button(action: {
+                self.presentationMode.wrappedValue.dismiss()
+            }) {
+                
+                RoundedRectangle(cornerRadius: 18)
+                    .fill(Color("WasteGrey"))
+                    .frame(width: 85, height: 85)
+                    .overlay(
+                        Image(systemName: "house.fill")
+                            .font(.system(size:45))
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                    )
+            }
+            .padding(.bottom, 50)
+            .position(x: geo.size.width / 2, y:geo.size.height / 1.01)
+        }
     }
     
     

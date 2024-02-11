@@ -10,15 +10,19 @@ import SwiftUI
 
 struct RecyclingLevel: View {
     
+    // Game Session Data
+    @State var numberOfCollectedWaste = 0
+    
+    // For returning to the previous view
     @Environment(\.presentationMode) var presentationMode
     
     // MARK: ALL Waste Data
     
-    let BananaPeel: Waste = Waste.BananaPeel
-    let EggShell: Waste = Waste.BrownEggShell
+    let CrushedPlastiBottle: Waste = Waste.CrushedBottleGreen
+    let Newspaper: Waste = Waste.Newspaper
     let CardboardBox: Waste = Waste.CardboardBox
-    let PlasticBottle: Waste = Waste.CrushedBottleWhite
-    let MelonRind: Waste = Waste.MelonRind
+    let PlasticBottle: Waste = Waste.PlasticBottleWhite
+    let GlassJar: Waste = Waste.GlassJar
     let MetalCan: Waste = Waste.MetalCan
     
     @State var waste1Position = CGPoint.zero
@@ -53,14 +57,43 @@ struct RecyclingLevel: View {
     var body: some View {
         GeometryReader { geo in
             
-            ZStack {
-                wasteComponents
+            VStack {
+                ZStack {
+                    wasteComponents
+                }
+                
+                HStack {
+//                    backButton infobutton?
+                    backButton
+                    Spacer(minLength: 10)
+                }
+                .frame(width: geo.size.width)
             }
             
         }
         
     }
     
+    private var backButton: some View {
+
+        // Button to go back a view
+        Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }) {
+            
+            RoundedRectangle(cornerRadius: 18)
+                .fill(Color("WasteGrey"))
+                .frame(width: 85, height: 85)
+                .overlay(
+                    Image(systemName: "arrow.left")
+                        .font(.system(size:45))
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                )
+        }
+        .padding(.leading, 20)
+
+    }
     
     var wasteComponents: some View {
         
@@ -68,22 +101,22 @@ struct RecyclingLevel: View {
             
             // Define the  Initial / Starting CGPoints of each Waste Item
             let waste1Point: CGPoint = CGPoint(x: geo.size.width / 4, y: geo.size.height / 2)
-            let waste2Point: CGPoint = CGPoint(x: geo.size.width / 1.2, y: geo.size.height / 2.4)
+            let waste2Point: CGPoint = CGPoint(x: geo.size.width / 1.15, y: geo.size.height / 4)
             let waste3Point: CGPoint = CGPoint(x: geo.size.width / 1.4, y: geo.size.height / 2.8)
             let waste4Point: CGPoint = CGPoint(x: geo.size.width / 2.8, y: geo.size.height / 2.7)
-            let waste5Point: CGPoint = CGPoint(x: geo.size.width / 7, y: geo.size.height / 3.6)
+            let waste5Point: CGPoint = CGPoint(x: geo.size.width / 8, y: geo.size.height / 3.6)
             let waste6Point: CGPoint = CGPoint(x: geo.size.width / 2, y: geo.size.height / 3.5)
             
             // Define the CGRect Parameters: CGPoint and CGSize
-            let wasteBagPoint = CGPoint(x: geo.size.width / 2, y: geo.size.height / 1.5)
-            let wasteBagShape = CGSize(width: geo.size.width / 6.5, height: geo.size.height / 8)
+            let wasteBagPoint = CGPoint(x: geo.size.width / 2, y: geo.size.height / 1.2)
+            let wasteBagShape = CGSize(width: geo.size.width / 6, height: geo.size.height / 8)
             
             let wasteBagRect = CGRect(
                 x: wasteBagPoint.x, y: wasteBagPoint.y,
                 width: wasteBagShape.width, height: wasteBagShape.height
             )
             
-            let wasteBag: WasteBin = WasteBin.GeneralBin
+            let wasteBag: WasteBin = WasteBin.GlassBottleBin
             
             ZStack{
                 
@@ -92,8 +125,9 @@ struct RecyclingLevel: View {
                     .scaledToFit()
                     .frame(width:200)
                     .position(wasteBagPoint)
+                    
                 
-                createWasteContainer(theWaste: BananaPeel, textOpacity: text1Opacity, frameSize: 175, scale: waste1Scale, opacity: waste1Opacity, position: waste1Position)
+                createWasteContainer(theWaste: CrushedPlastiBottle, textOpacity: text1Opacity, frameSize: 90, scale: waste1Scale, opacity: waste1Opacity, position: waste1Position)
                     .gesture(DragGesture()
                         .onChanged{ value in
                             waste1Position = value.location
@@ -124,9 +158,9 @@ struct RecyclingLevel: View {
                     )
                 
                 createWasteContainer(
-                    theWaste: EggShell,
+                    theWaste: Newspaper,
                     textOpacity: text2Opacity,
-                    frameSize: 50,
+                    frameSize: 175,
                     scale: waste2Scale,
                     opacity: waste2Opacity,
                     position: waste2Position)
@@ -244,7 +278,7 @@ struct RecyclingLevel: View {
                 )
                 
                 // MelonRind
-                createWasteContainer(theWaste: MelonRind,
+                createWasteContainer(theWaste: GlassJar,
                                      textOpacity: text5Opacity,
                                      frameSize: 75,
                                      scale: waste5Scale,
