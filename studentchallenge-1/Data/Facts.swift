@@ -32,18 +32,25 @@ extension Fact {
     // Trash as of Now - 126 cities / regency - 2023
     // https://sipsn.menlhk.go.id/sipsn/
     static let indonesianWasteFact = Fact(
-        statement: "The ratio of unprocessed waste to processed waste has increased from 2021-2023",
+        statement: """
+        As much as 13-14 million tons of Waste accumulates each year in Indonesia and only about 70% is processed properly; \
+        leaving about 30% or 4.9 million tons of unprocessed waste to accumulate in landfills. Consequences of accumulated unprocessed waste includes potential explosions due to methane build-up during and floods during the rainy seasons.
+        
+        Between 2021-2023, data from the System of Information for National Waste Management shows that the volume of unprocessed waste is increasing, resulting in further accumulation of wastes in landfills.
+        """,
         supportingFact: ["2021 - 72.95% Processed (13,3 million ton) vs. 27.05% Unprocessed (4,9 million ton)",
                          "2022 - 65.71% Processed (13,9 million ton) vs. 34.29% Unprocessed (7,2 million ton)",
-                         "2023 - 66.47% Processed (11,6 million ton) vs. 33.53% Unprocessed (5,9 million ton)"],
+                         "2023 - 66.47% Processed (11,6 million ton) vs. 33.53% Unprocessed (5,9 million ton)",
+                        "Explosion due to methane gas build up in Leuwigajah Village in 2005"],
         source: [
             "https://bsilhk.menlhk.go.id/index.php/2022/06/02/ikn-tantangan-kelola-sampah-standar-minimal-harus-berjalan/",
             "https://unair.ac.id/tpa-salah-satu-solusi-bukan-satu-satunya-solusi/",
-            "https://sipsn.menlhk.go.id/sipsn/"
+            "https://sipsn.menlhk.go.id/sipsn/",
+            "https://paxel.co/id/berita-dan-promo/dampak-sampah-yang-tidak-dikelola-dengan-baik#:~:text=Selain%20banjir%2C%20longsor%20sampah%20dapat,Tempat%20Pemrosesan%20Sampah%20(TPA)."
         ]
     )
     
-    // Korean is popular in Indonesia
+    // Korean Culture is popular in Indonesia
     // https://snapcart.global/article-k-everything-indonesian-consumption-of-korean-culture-and-entertainment/
     static let southKoreaPopularityFact = Fact(
         statement: "South Korea Entertainment and Media is popular in Indonesia",

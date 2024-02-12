@@ -68,6 +68,7 @@ struct RecyclingLevel: View {
                     Spacer(minLength: 10)
                 }
                 .frame(width: geo.size.width)
+                .border(.red)
             }
             
         }

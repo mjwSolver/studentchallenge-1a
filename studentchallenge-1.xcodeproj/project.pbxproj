@@ -17,6 +17,7 @@
 		8330EADE2B61169400B1E62F /* studentchallenge_1UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330EADD2B61169400B1E62F /* studentchallenge_1UITestsLaunchTests.swift */; };
 		8330EAEC2B627EC500B1E62F /* Waste.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8330EAEB2B627EC500B1E62F /* Waste.swift */; };
 		836E21672B73BEEE00B451EC /* BackgroundIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836E21662B73BEEE00B451EC /* BackgroundIntroductionView.swift */; };
+		836E216C2B7A28A100B451EC /* FactsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836E216B2B7A28A100B451EC /* FactsOverlay.swift */; };
 		83DF5CE02B66795F00CBA500 /* RecyclingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DF5CDF2B66795F00CBA500 /* RecyclingLevel.swift */; };
 		83DF5CE22B66797100CBA500 /* FoodnGeneralLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DF5CE12B66797100CBA500 /* FoodnGeneralLevel.swift */; };
 /* End PBXBuildFile section */
@@ -53,6 +54,7 @@
 		8330EADD2B61169400B1E62F /* studentchallenge_1UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studentchallenge_1UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8330EAEB2B627EC500B1E62F /* Waste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Waste.swift; sourceTree = "<group>"; };
 		836E21662B73BEEE00B451EC /* BackgroundIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundIntroductionView.swift; sourceTree = "<group>"; };
+		836E216B2B7A28A100B451EC /* FactsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsOverlay.swift; sourceTree = "<group>"; };
 		83DF5CDF2B66795F00CBA500 /* RecyclingLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecyclingLevel.swift; sourceTree = "<group>"; };
 		83DF5CE12B66797100CBA500 /* FoodnGeneralLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodnGeneralLevel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,6 +116,7 @@
 				8330EAC32B61169400B1E62F /* Assets.xcassets */,
 				8330EAC52B61169400B1E62F /* studentchallenge_1.entitlements */,
 				8330EAC62B61169400B1E62F /* Preview Content */,
+				836E216B2B7A28A100B451EC /* FactsOverlay.swift */,
 			);
 			path = "studentchallenge-1";
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				836E216C2B7A28A100B451EC /* FactsOverlay.swift in Sources */,
 				83DF5CE22B66797100CBA500 /* FoodnGeneralLevel.swift in Sources */,
 				8321FD9F2B726EF3001B39F8 /* Facts.swift in Sources */,
 				8330EAC22B61169300B1E62F /* ContentView.swift in Sources */,

@@ -14,7 +14,7 @@ struct BackgroundIntroductionView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State var currentFactIndex = 0
-    @State var showFactsOverlay = true
+    @State var showFactsOverlay: Bool = false
     
     // MARK: View Outline
     /// Displays several facts from Facts.swift
@@ -22,23 +22,38 @@ struct BackgroundIntroductionView: View {
     /// onEnd, will show two level options
     
     var body: some View {
-        NavigationView {
+        
+        GeometryReader { geo in
             
-            ZStack {
-                VStack {
-                    allLevelButtons
-                }
-                homeScreenButton
-            } // End of ZStack
+            NavigationView {
+                
+                ZStack {
+                    
+                    // Buttons are the lowest layer
+                    VStack {
+                        allLevelButtons
+                    }
+                    
+                    // Show the facts
+                    if showFactsOverlay {
+                        Circle()
+                    }
+
+
+                    lowerButtons
+                    
+                } // End of ZStack
+                
+            }.navigationViewStyle(StackNavigationViewStyle())
             
-            
-        }.navigationViewStyle(StackNavigationViewStyle())
+        }
+        
     }
     
-    
-    // MARK: All Level Buttons
-    var allLevelButtons: some View {
 
+    // MARK: All Buttons
+    var allLevelButtons: some View {
+        
         VStack {
             
             NavigationLink(destination: RecyclingLevel()
@@ -56,8 +71,37 @@ struct BackgroundIntroductionView: View {
         
     }
     
+    var lowerButtons: some View {
+        GeometryReader { geo in
+            HStack {
+                infoButton
+                    .padding(.trailing, 10)
+                homeScreenButton
+            }
+            .padding(.bottom, 50)
+            // Center-aligned
+            .position(x: geo.size.width / 2, y:geo.size.height / 1.02)
+            // Left-aligned
+//            .position(x: 115, y:geo.size.height / 1.02)
+        }
+    }
+    
+    private var infoButton: some View {
+        Button(action: {showFactsOverlay.toggle()}, label: {
+            Circle()
+                .fill(Color("RecycleGreen"))
+                .frame(width: 85, height: 85)
+                .shadow(radius: 3)
+                .overlay(
+                    Image(systemName: "info.circle.fill")
+                        .font(.system(size: 60))
+                        .foregroundColor(.white)
+                )
+        })
+    }
+    
     private var homeScreenButton: some View {
-        GeometryReader {geo in
+//        GeometryReader {geo in
             
             // Button to go back a view
             Button(action: {
@@ -74,16 +118,25 @@ struct BackgroundIntroductionView: View {
                             .foregroundColor(.white)
                     )
             }
-            .padding(.bottom, 50)
-            .position(x: geo.size.width / 2, y:geo.size.height / 1.01)
-        }
+//            .padding(.bottom, 50)
+//            .position(x: geo.size.width / 2, y:geo.size.height / 1.01)
+            //        }
+//        }
+        
+        
     }
     
+    // MARK: Previewing
     
-}
-
-struct BackgroundIntroductionView_Previews: PreviewProvider {
-    static var previews: some View {
-        BackgroundIntroductionView()
+    struct BackgroundIntroductionView_Previews: PreviewProvider {
+        static var previews: some View {
+            Group {
+                BackgroundIntroductionView()
+                    .previewInterfaceOrientation(.landscapeLeft)
+                
+                BackgroundIntroductionView()
+                    .previewInterfaceOrientation(.portrait)
+            }
+        }
     }
 }
