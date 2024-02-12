@@ -14,6 +14,7 @@ struct BackgroundIntroductionView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State var currentFactIndex = 0
+    @State var showFactsOverlay = true
     
     // MARK: View Outline
     /// Displays several facts from Facts.swift
@@ -22,12 +23,15 @@ struct BackgroundIntroductionView: View {
     
     var body: some View {
         NavigationView {
+            
             ZStack {
                 VStack {
                     allLevelButtons
                 }
                 homeScreenButton
-            }
+            } // End of ZStack
+            
+            
         }.navigationViewStyle(StackNavigationViewStyle())
     }
     

@@ -105,16 +105,15 @@
 		8330EABE2B61169300B1E62F /* studentchallenge-1 */ = {
 			isa = PBXGroup;
 			children = (
+				836E216A2B7A1B6B00B451EC /* Data */,
 				8330EABF2B61169300B1E62F /* studentchallenge_1App.swift */,
 				8330EAC12B61169300B1E62F /* ContentView.swift */,
-				8330EAEB2B627EC500B1E62F /* Waste.swift */,
+				83DF5CDF2B66795F00CBA500 /* RecyclingLevel.swift */,
+				83DF5CE12B66797100CBA500 /* FoodnGeneralLevel.swift */,
+				836E21662B73BEEE00B451EC /* BackgroundIntroductionView.swift */,
 				8330EAC32B61169400B1E62F /* Assets.xcassets */,
 				8330EAC52B61169400B1E62F /* studentchallenge_1.entitlements */,
 				8330EAC62B61169400B1E62F /* Preview Content */,
-				83DF5CDF2B66795F00CBA500 /* RecyclingLevel.swift */,
-				83DF5CE12B66797100CBA500 /* FoodnGeneralLevel.swift */,
-				8321FD9E2B726EF3001B39F8 /* Facts.swift */,
-				836E21662B73BEEE00B451EC /* BackgroundIntroductionView.swift */,
 			);
 			path = "studentchallenge-1";
 			sourceTree = "<group>";
@@ -142,6 +141,15 @@
 				8330EADD2B61169400B1E62F /* studentchallenge_1UITestsLaunchTests.swift */,
 			);
 			path = "studentchallenge-1UITests";
+			sourceTree = "<group>";
+		};
+		836E216A2B7A1B6B00B451EC /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8330EAEB2B627EC500B1E62F /* Waste.swift */,
+				8321FD9E2B726EF3001B39F8 /* Facts.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
