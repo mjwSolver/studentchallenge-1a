@@ -80,9 +80,9 @@ struct BackgroundIntroductionView: View {
             }
             .padding(.bottom, 50)
             // Center-aligned
-            .position(x: geo.size.width / 2, y:geo.size.height / 1.02)
+//            .position(x: geo.size.width / 2, y:geo.size.height / 1.02)
             // Left-aligned
-//            .position(x: 115, y:geo.size.height / 1.02)
+            .position(x: 115, y:geo.size.height / 1.02)
         }
     }
     

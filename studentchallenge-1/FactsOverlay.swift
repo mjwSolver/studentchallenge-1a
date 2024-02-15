@@ -20,24 +20,31 @@ struct FactsOverlay: View {
         let currentFact = theFacts[currentFactIndex]
         
         VStack {
-            Text(currentFact.statement)
-                .font(.system(size: 24))
-                .fontWeight(.light)
-                .padding(.bottom, 12)
-            
-//            let numberOfSources = theFacts[currentFactIndex].supportingFact.count
-            
-            Divider()
-            
-            Text("Sources")
-                .font(.system(size: 20))
-                .fontWeight(.semibold)
-            
-            ForEach(0..<currentFact.supportingFact.count, id: \.self) { index in
-                Link("\(currentFact.supportingFact[index])",
-                     destination: URL(string: currentFact.source[index])!)
-                .padding(.vertical, 3)
+            HStack {
                 
+                
+                
+                Text(currentFact.statement)
+                    .font(.system(size: 24))
+                    .fontWeight(.light)
+                    .padding(.bottom, 12)
+                
+                
+                Divider()
+                
+                VStack {
+                    Text("Sources")
+                        .font(.system(size: 20))
+                        .fontWeight(.semibold)
+                        .padding(.top, 12)
+                    
+                    ForEach(0..<currentFact.supportingFact.count, id: \.self) { index in
+                        Link("\(currentFact.supportingFact[index])",
+                             destination: URL(string: currentFact.source[index])!)
+                        .padding(.vertical, 3)
+                        
+                    }
+                }
             }
             
             HStack {
@@ -54,7 +61,7 @@ struct FactsOverlay: View {
                             .cornerRadius(12)
                     }
                 }
-
+                
                 if currentFactIndex != theFacts.count - 1 {
                     Button(action: {incrementFactIndex()}) {
                         Image(systemName: "arrow.right")
@@ -65,13 +72,18 @@ struct FactsOverlay: View {
                             .padding(8)
                             .background(Color("WasteGrey"))
                             .cornerRadius(12)
-                            
+                        
                     }
                 }
-            }.padding(.top, 12)
+            }
+            .padding(.top, 12)
+            
+            .border(.red)
+                
+            
         }
-        .padding(28)
-        .frame(width: 725, height: 650)
+        .padding(18)
+        .frame(width: 900, height: 500)
         .background(.white)
         .cornerRadius(36)
         .shadow(radius: 12)
@@ -83,7 +95,7 @@ struct FactsOverlay: View {
         currentFactIndex += 1
         
         if currentFactIndex == theFacts.count {
-                currentFactIndex = 0
+            currentFactIndex = 0
         }
         
     }
