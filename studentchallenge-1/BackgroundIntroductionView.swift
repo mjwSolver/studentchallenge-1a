@@ -14,7 +14,7 @@ struct BackgroundIntroductionView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State var currentFactIndex = 0
-    @State var showFactsOverlay: Bool = false
+    @State var showFactsOverlay: Bool = true
     
     // MARK: View Outline
     /// Displays several facts from Facts.swift
@@ -36,7 +36,7 @@ struct BackgroundIntroductionView: View {
                     
                     // Show the facts
                     if showFactsOverlay {
-                        Circle()
+                        FactsOverlay(showFactsOverlay: $showFactsOverlay)
                     }
 
 

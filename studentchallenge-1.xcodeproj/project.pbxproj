@@ -20,6 +20,7 @@
 		836E216C2B7A28A100B451EC /* FactsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836E216B2B7A28A100B451EC /* FactsOverlay.swift */; };
 		83DF5CE02B66795F00CBA500 /* RecyclingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DF5CDF2B66795F00CBA500 /* RecyclingLevel.swift */; };
 		83DF5CE22B66797100CBA500 /* FoodnGeneralLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DF5CE12B66797100CBA500 /* FoodnGeneralLevel.swift */; };
+		83FD77FF2B7E4AAC006D82BD /* SuccessOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FD77FE2B7E4AAC006D82BD /* SuccessOverlay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		836E216B2B7A28A100B451EC /* FactsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsOverlay.swift; sourceTree = "<group>"; };
 		83DF5CDF2B66795F00CBA500 /* RecyclingLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecyclingLevel.swift; sourceTree = "<group>"; };
 		83DF5CE12B66797100CBA500 /* FoodnGeneralLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodnGeneralLevel.swift; sourceTree = "<group>"; };
+		83FD77FE2B7E4AAC006D82BD /* SuccessOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessOverlay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				8330EAC52B61169400B1E62F /* studentchallenge_1.entitlements */,
 				8330EAC62B61169400B1E62F /* Preview Content */,
 				836E216B2B7A28A100B451EC /* FactsOverlay.swift */,
+				83FD77FE2B7E4AAC006D82BD /* SuccessOverlay.swift */,
 			);
 			path = "studentchallenge-1";
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				8330EAC02B61169300B1E62F /* studentchallenge_1App.swift in Sources */,
 				836E21672B73BEEE00B451EC /* BackgroundIntroductionView.swift in Sources */,
 				8330EAEC2B627EC500B1E62F /* Waste.swift in Sources */,
+				83FD77FF2B7E4AAC006D82BD /* SuccessOverlay.swift in Sources */,
 				83DF5CE02B66795F00CBA500 /* RecyclingLevel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

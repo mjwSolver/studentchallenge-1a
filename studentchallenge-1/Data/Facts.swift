@@ -34,14 +34,14 @@ extension Fact {
     static let indonesianWasteFact = Fact(
         statement: """
         As much as 13-14 million tons of Waste accumulates each year in Indonesia and only about 70% is processed properly; \
-        leaving about 30% or 4.9 million tons of unprocessed waste to accumulate in landfills. Consequences of accumulated unprocessed waste includes potential explosions due to methane build-up during and floods during the rainy seasons.
+        leaving about 30% or 4.9 million tons of unprocessed waste to accumulate in landfills. 
         
         Between 2021-2023, data from the System of Information for National Waste Management shows that the volume of unprocessed waste is increasing, resulting in further accumulation of wastes in landfills.
         """,
         supportingFact: ["2021 - 72.95% Processed (13,3 million ton) vs. 27.05% Unprocessed (4,9 million ton)",
                          "2022 - 65.71% Processed (13,9 million ton) vs. 34.29% Unprocessed (7,2 million ton)",
                          "2023 - 66.47% Processed (11,6 million ton) vs. 33.53% Unprocessed (5,9 million ton)",
-                        "Explosion due to methane gas build up in Leuwigajah Village in 2005"],
+                        "Explosion due to methane gas build up in the city of Leuwigajah in 2005"],
         source: [
             "https://bsilhk.menlhk.go.id/index.php/2022/06/02/ikn-tantangan-kelola-sampah-standar-minimal-harus-berjalan/",
             "https://unair.ac.id/tpa-salah-satu-solusi-bukan-satu-satunya-solusi/",
@@ -52,26 +52,37 @@ extension Fact {
     
     // Korean Culture is popular in Indonesia
     // https://snapcart.global/article-k-everything-indonesian-consumption-of-korean-culture-and-entertainment/
-    static let southKoreaPopularityFact = Fact(
-        statement: "South Korea Entertainment and Media is popular in Indonesia",
-        supportingFact: [
-            ""
-        ],
-        source: [
-            "https://snapcart.global/article-k-everything-indonesian-consumption-of-korean-culture-and-entertainment/"
-        ]
-    )
+//    static let southKoreaPopularityFact = Fact(
+//        statement: """
+//        South Korea Entertainment and Media is popular in Indonesia
+//        """,
+//        supportingFact: [
+//            "South Korea Entertainment and Media is popular in Indonesia"
+//        ],
+//        source: [
+//            "https://snapcart.global/article-k-everything-indonesian-consumption-of-korean-culture-and-entertainment/"
+//        ]
+//    )
     
     // "Kesuksesan sistem pengolahan sampah Korea"
     // https://greeneration.org/publication/green-info/sistem-pengelolaan-sampah-korea-selatan/
     // https://www.cnbcindonesia.com/news/20230111192253-4-404781/takjub-korsel-daur-ulang-sampah-plastik-943000-ton--tahun
     static let koreanWasteFact = Fact(
-        statement: "South Korea Has a Successful Waste-Disposal Policy",
+        statement:
+        """
+        With 
+        
+        South Korea Has a Successful Waste-Disposal Policy and separates waste into four categories, being landfill waste, organic waste, inorganic waste and large waste items.
+        
+        South Korea's waste management systems are an excellent role model for all nations struggling to process their waste.
+        """,
         supportingFact: [
+            "South Korea Entertainment and Media is popular in Indonesia",
             "South Korea has one of the most rigorous waste recycling programmes in the world",
             "Implements waste management policies such as Extended Producer Responsibility (EPR) and Volume-based Waste Fee (VBWF)"
         ],
         source: [
+            "https://snapcart.global/article-k-everything-indonesian-consumption-of-korean-culture-and-entertainment/",
             "https://www.downtoearth.org.in/news/waste/ten-zero-waste-cities-how-seoul-came-to-be-among-the-best-in-recycling-68585",
             "https://greeneration.org/publication/green-info/sistem-pengelolaan-sampah-korea-selatan/"
         ]

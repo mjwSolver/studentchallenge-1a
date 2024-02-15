@@ -10,21 +10,21 @@ import SwiftUI
 
 struct RecyclingLevel: View {
     
-    // Game Session Data
+    // MARK: Game Session Data
     @State var numberOfCollectedWaste = 0
     
     // For returning to the previous view
     @Environment(\.presentationMode) var presentationMode
     
     // MARK: ALL Waste Data
-    
-    let CrushedPlastiBottle: Waste = Waste.CrushedBottleGreen
+    let CrushedPlasticBottle: Waste = Waste.CrushedBottleGreen
     let Newspaper: Waste = Waste.Newspaper
     let CardboardBox: Waste = Waste.CardboardBox
     let PlasticBottle: Waste = Waste.PlasticBottleWhite
     let GlassJar: Waste = Waste.GlassJar
     let MetalCan: Waste = Waste.MetalCan
     
+    // Positions of each waste on screen
     @State var waste1Position = CGPoint.zero
     @State var waste2Position = CGPoint.zero
     @State var waste3Position = CGPoint.zero
@@ -32,6 +32,7 @@ struct RecyclingLevel: View {
     @State var waste5Position = CGPoint.zero
     @State var waste6Position = CGPoint.zero
     
+    // Make the waste invisible when "sorted properly"
     @State var waste1Opacity: Double = 1.0
     @State var waste2Opacity: Double = 1.0
     @State var waste3Opacity: Double = 1.0
@@ -39,6 +40,7 @@ struct RecyclingLevel: View {
     @State var waste5Opacity: Double = 1.0
     @State var waste6Opacity: Double = 1.0
     
+    // Shrink the waste when "sorted properly"
     @State var waste1Scale: CGFloat = 1.0
     @State var waste2Scale: CGFloat = 1.0
     @State var waste3Scale: CGFloat = 1.0
@@ -46,6 +48,7 @@ struct RecyclingLevel: View {
     @State var waste5Scale: CGFloat = 1.0
     @State var waste6Scale: CGFloat = 1.0
     
+    // Annotations on top of each waste
     @State var text1Opacity: CGFloat = 0.0
     @State var text2Opacity: CGFloat = 0.0
     @State var text3Opacity: CGFloat = 0.0
@@ -63,12 +66,11 @@ struct RecyclingLevel: View {
                 }
                 
                 HStack {
-//                    backButton infobutton?
                     backButton
                     Spacer(minLength: 10)
                 }
                 .frame(width: geo.size.width)
-                .border(.red)
+//                .border(.red)
             }
             
         }
@@ -81,19 +83,31 @@ struct RecyclingLevel: View {
         Button(action: {
             self.presentationMode.wrappedValue.dismiss()
         }) {
-            
             RoundedRectangle(cornerRadius: 18)
                 .fill(Color("WasteGrey"))
-                .frame(width: 85, height: 85)
+                .frame(width: 145, height: 85)
                 .overlay(
-                    Image(systemName: "arrow.left")
-                        .font(.system(size:45))
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
+                    HStack {
+                        Image(systemName: "arrow.left")
+                            .font(.system(size:42))
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                        
+                        Text("Back")
+                            .font(.system(size:28))
+                            .foregroundColor(.white)
+                    }
+
                 )
         }
         .padding(.leading, 20)
 
+    }
+
+    
+    /// Show the successView when all waste are sorted into the proper trash
+    private var successView: some View {
+        return Circle()
     }
     
     var wasteComponents: some View {
@@ -101,12 +115,12 @@ struct RecyclingLevel: View {
         GeometryReader { geo in
             
             // Define the  Initial / Starting CGPoints of each Waste Item
-            let waste1Point: CGPoint = CGPoint(x: geo.size.width / 4, y: geo.size.height / 2)
-            let waste2Point: CGPoint = CGPoint(x: geo.size.width / 1.15, y: geo.size.height / 4)
-            let waste3Point: CGPoint = CGPoint(x: geo.size.width / 1.4, y: geo.size.height / 2.8)
-            let waste4Point: CGPoint = CGPoint(x: geo.size.width / 2.8, y: geo.size.height / 2.7)
-            let waste5Point: CGPoint = CGPoint(x: geo.size.width / 8, y: geo.size.height / 3.6)
-            let waste6Point: CGPoint = CGPoint(x: geo.size.width / 2, y: geo.size.height / 3.5)
+            let waste1Point: CGPoint = CGPoint(x: geo.size.width / 4, y: geo.size.height / 2.3)
+            let waste2Point: CGPoint = CGPoint(x: geo.size.width / 1.2, y: geo.size.height / 3.5)
+            let waste3Point: CGPoint = CGPoint(x: geo.size.width / 1.4, y: geo.size.height / 8)
+            let waste4Point: CGPoint = CGPoint(x: geo.size.width / 2.1, y: geo.size.height / 3.5)
+            let waste5Point: CGPoint = CGPoint(x: geo.size.width / 8, y: geo.size.height / 5)
+            let waste6Point: CGPoint = CGPoint(x: geo.size.width / 1.5, y: geo.size.height / 1.7)
             
             // Define the CGRect Parameters: CGPoint and CGSize
             let wasteBagPoint = CGPoint(x: geo.size.width / 2, y: geo.size.height / 1.2)
@@ -128,7 +142,7 @@ struct RecyclingLevel: View {
                     .position(wasteBagPoint)
                     
                 
-                createWasteContainer(theWaste: CrushedPlastiBottle, textOpacity: text1Opacity, frameSize: 90, scale: waste1Scale, opacity: waste1Opacity, position: waste1Position)
+                createWasteContainer(theWaste: CrushedPlasticBottle, textOpacity: text1Opacity, frameSize: 90, scale: waste1Scale, opacity: waste1Opacity, position: waste1Position)
                     .gesture(DragGesture()
                         .onChanged{ value in
                             waste1Position = value.location
@@ -140,16 +154,22 @@ struct RecyclingLevel: View {
                             
                             let wasteRect = CGRect(x: waste1Position.x, y: waste1Position.y, width: 100, height: 100)
                             
+                            // If the waste meets the area of the waste bag, check if the category matches.
+                            
                             if wasteRect.intersects(wasteBagRect) {
                                 
-                                // If the waste meets the area of the waste bag, check if the category matches.
                                 
-                                
-                                // If the category matches, remove the waste from view.
+                                // If the category matches,
+                                // remove the waste from view.
                                 withAnimation {
                                     waste1Scale = 0.0
                                     waste1Opacity = 0.1
                                 }
+                                
+                                // then increment the number of sorted waste
+                                
+                                // check if the number of sorted waste is 7
+                                
                             } else {
                                 withAnimation {
                                     waste1Position = waste1Point
@@ -161,7 +181,7 @@ struct RecyclingLevel: View {
                 createWasteContainer(
                     theWaste: Newspaper,
                     textOpacity: text2Opacity,
-                    frameSize: 175,
+                    frameSize: 200,
                     scale: waste2Scale,
                     opacity: waste2Opacity,
                     position: waste2Position)
@@ -281,7 +301,7 @@ struct RecyclingLevel: View {
                 // MelonRind
                 createWasteContainer(theWaste: GlassJar,
                                      textOpacity: text5Opacity,
-                                     frameSize: 75,
+                                     frameSize: 80,
                                      scale: waste5Scale,
                                      opacity: waste5Opacity,
                                      position: waste5Position
@@ -377,6 +397,14 @@ struct RecyclingLevel: View {
         }
     }
     
+    // MARK: Functions
+    
+    func checkIfAllTrashIsSorted() {
+        if numberOfCollectedWaste == 6 {
+            self.presentationMode.wrappedValue.dismiss()
+        }
+    }
+    
     func createWasteContainer(
         theWaste: Waste, textOpacity: Double, frameSize: CGFloat,
         scale: CGFloat, opacity: CGFloat, position: CGPoint
@@ -401,6 +429,13 @@ struct RecyclingLevel: View {
                 .padding(10)
             
         }
+        // Add padding and create a rounded border around the vstack.
+        .padding(8)
+        .overlay(
+            RoundedRectangle(cornerRadius: 14)
+                .stroke(Color("WasteGrey"), lineWidth: 4)
+                .opacity(textOpacity)
+        )
         .scaleEffect(scale)
         .opacity(opacity)
         .position(position)
