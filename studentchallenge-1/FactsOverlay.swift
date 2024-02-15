@@ -12,25 +12,37 @@ struct FactsOverlay: View {
     @Binding var showFactsOverlay: Bool
     
     let theFacts = Fact.infoCollection
+    let overlayWidth:CGFloat = 950.0
+    let overlayHeight:CGFloat = 500.0
     
-    @State var currentFactIndex = 1
+    @State var currentFactIndex = 0
     
     var body: some View {
         
         let currentFact = theFacts[currentFactIndex]
         
-        VStack {
-            HStack {
+        VStack(alignment: .leading) {
+            
+            Text(currentFact.title)
+                .font(.system(size: 30))
+                .fontWeight(.heavy)
+                .padding(.top, 16)
+                .padding(.leading, 12)
                 
+            
+            HStack(spacing: 16) {
                 
-                
-                Text(currentFact.statement)
-                    .font(.system(size: 24))
-                    .fontWeight(.light)
-                    .padding(.bottom, 12)
-                
+                VStack(alignment: .trailing) {
+                    Text(currentFact.statement)
+                        .font(.system(size: 24))
+                        .fontWeight(.light)
+                }
+                .padding(.horizontal, 5)
                 
                 Divider()
+                    .frame(width: 1.5)
+                    .overlay(Color("WasteGrey"))
+                    .opacity(0.2)
                 
                 VStack {
                     Text("Sources")
@@ -42,13 +54,15 @@ struct FactsOverlay: View {
                         Link("\(currentFact.supportingFact[index])",
                              destination: URL(string: currentFact.source[index])!)
                         .padding(.vertical, 3)
-                        
                     }
                 }
+                
             }
+            .padding(.horizontal, 12)
             
             HStack {
                 
+                // The Back Button
                 if currentFactIndex != 0 {
                     Button(action: {decrementFactIndex()}) {
                         Image(systemName: "arrow.left")
@@ -62,6 +76,7 @@ struct FactsOverlay: View {
                     }
                 }
                 
+                // The Next Button
                 if currentFactIndex != theFacts.count - 1 {
                     Button(action: {incrementFactIndex()}) {
                         Image(systemName: "arrow.right")
@@ -75,20 +90,37 @@ struct FactsOverlay: View {
                         
                     }
                 }
+                
+                // The close button
+                if currentFactIndex == theFacts.count - 1 {
+                    Button(action: {closeOverlay()}) {
+                        Text("Close")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .frame(width: 100, height: 50)
+                            .padding(8)
+                            .background(Color("WasteGrey"))
+                            .cornerRadius(12)
+                        
+                    }
+                }
+                
             }
             .padding(.top, 12)
-            
-            .border(.red)
+            .frame(width: 900)
                 
             
         }
         .padding(18)
-        .frame(width: 900, height: 500)
+        .frame(width: overlayWidth, height: overlayHeight)
         .background(.white)
         .cornerRadius(36)
         .shadow(radius: 12)
         
     }
+    
+    // MARK: Functions
     
     func incrementFactIndex() {
         
@@ -107,6 +139,10 @@ struct FactsOverlay: View {
         if currentFactIndex < 0 {
             currentFactIndex = 0
         }
+    }
+    
+    func closeOverlay() {
+        showFactsOverlay.toggle()
     }
     
 }

@@ -9,11 +9,13 @@ import Foundation
 
 struct Fact {
     
+    let title: String
     let statement: String
     let supportingFact: [String]
     let source: [String]
     
-    init(statement: String, supportingFact: [String], source: [String]) {
+    init(title: String, statement: String, supportingFact: [String], source: [String]) {
+        self.title = title
         self.statement = statement
         self.supportingFact = supportingFact
         self.source = source
@@ -32,11 +34,12 @@ extension Fact {
     // Trash as of Now - 126 cities / regency - 2023
     // https://sipsn.menlhk.go.id/sipsn/
     static let indonesianWasteFact = Fact(
+        title: "Waste in Indonesia",
         statement: """
         As much as 13-14 million tons of Waste accumulates each year in Indonesia and only about 70% is processed properly; \
         leaving about 30% or 4.9 million tons of unprocessed waste to accumulate in landfills. 
         
-        Between 2021-2023, data from the System of Information for National Waste Management shows that the volume of unprocessed waste is increasing, resulting in further accumulation of wastes in landfills.
+        Between 2021-2023, data shows that the volume of unprocessed waste is increasing, resulting in further accumulation of wastes in landfills and further environmental consequences.
         """,
         supportingFact: ["2021 - 72.95% Processed (13,3 million ton) vs. 27.05% Unprocessed (4,9 million ton)",
                          "2022 - 65.71% Processed (13,9 million ton) vs. 34.29% Unprocessed (7,2 million ton)",
@@ -68,6 +71,7 @@ extension Fact {
     // https://greeneration.org/publication/green-info/sistem-pengelolaan-sampah-korea-selatan/
     // https://www.cnbcindonesia.com/news/20230111192253-4-404781/takjub-korsel-daur-ulang-sampah-plastik-943000-ton--tahun
     static let koreanWasteFact = Fact(
+        title: "South Korea's Waste-Disposal Policy and Popularity",
         statement:
         """
         With 
@@ -91,6 +95,7 @@ extension Fact {
     // Encouragement
     // https://www.kemenkopmk.go.id/72-juta-ton-sampah-di-indonesia-belum-terkelola-dengan-baik
     static let encouragementFact = Fact(
+        title: "Leading a New Lifestyle",
         statement: "Lets abandon the conventional pattern of waste disposal and start sorting waste at home all the way to living a new lifestyle based on 3R (reduce, reuse, recycle) ~ (translated)",
         supportingFact: ["by Gatot Hendrarto - Deputy Secretary of Mental Revolution, Cultural Advancement, and Athletic Performance"],
         source: ["https://www.kemenkopmk.go.id/72-juta-ton-sampah-di-indonesia-belum-terkelola-dengan-baik"]

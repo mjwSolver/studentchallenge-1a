@@ -74,15 +74,20 @@ struct BackgroundIntroductionView: View {
     var lowerButtons: some View {
         GeometryReader { geo in
             HStack {
-                infoButton
-                    .padding(.trailing, 10)
+                
+                if !showFactsOverlay {
+                    infoButton
+                        .padding(.trailing, 10)
+                    
+                }
+                
                 homeScreenButton
             }
             .padding(.bottom, 50)
             // Center-aligned
-//            .position(x: geo.size.width / 2, y:geo.size.height / 1.02)
+            .position(x: geo.size.width / 2, y:geo.size.height / 1.02)
             // Left-aligned
-            .position(x: 115, y:geo.size.height / 1.02)
+//            .position(x: 115, y:geo.size.height / 1.02)
         }
     }
     
