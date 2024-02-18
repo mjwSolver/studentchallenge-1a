@@ -446,7 +446,14 @@ struct RecyclingLevel: View {
 
 struct RecyclingLevel_Previews: PreviewProvider {
     static var previews: some View {
-        RecyclingLevel()
+        Group {
+            RecyclingLevel()
+                .previewInterfaceOrientation(.landscapeLeft)
+            
+            RecyclingLevel()
+                .previewInterfaceOrientation(.portrait)
+        }
+        
     }
 }
 

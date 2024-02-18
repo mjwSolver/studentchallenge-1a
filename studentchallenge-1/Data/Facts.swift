@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Fact {
     
@@ -36,10 +37,10 @@ extension Fact {
     static let indonesianWasteFact = Fact(
         title: "Waste in Indonesia",
         statement: """
-        As much as 13-14 million tons of Waste accumulates each year in Indonesia and only about 70% is processed properly; \
+        Indonesia accumulates 13-14 million tons of waste annually and only 70% is properly processed; \
         leaving about 30% or 4.9 million tons of unprocessed waste to accumulate in landfills. 
         
-        Between 2021-2023, data shows that the volume of unprocessed waste is increasing, resulting in further accumulation of wastes in landfills and further environmental consequences.
+        In 2021-2023, data shows an increasing trend of the volume of unprocessed waste ending up in landfills with further environmental consequences.
         """,
         supportingFact: ["2021 - 72.95% Processed (13,3 million ton) vs. 27.05% Unprocessed (4,9 million ton)",
                          "2022 - 65.71% Processed (13,9 million ton) vs. 34.29% Unprocessed (7,2 million ton)",
@@ -74,11 +75,9 @@ extension Fact {
         title: "South Korea's Waste-Disposal Policy and Popularity",
         statement:
         """
-        With 
+        South Korean culture enjoys widespread popularity in Indonesia, evident from the craze for K-dramas, beauty products, and Korean-themed restaurants.
         
-        South Korea Has a Successful Waste-Disposal Policy and separates waste into four categories, being landfill waste, organic waste, inorganic waste and large waste items.
-        
-        South Korea's waste management systems are an excellent role model for all nations struggling to process their waste.
+        South Korea also has a successful Waste-Disposal Policy and has proven to be an excellent role model for all nations in how to process their waste.
         """,
         supportingFact: [
             "South Korea Entertainment and Media is popular in Indonesia",
@@ -96,21 +95,17 @@ extension Fact {
     // https://www.kemenkopmk.go.id/72-juta-ton-sampah-di-indonesia-belum-terkelola-dengan-baik
     static let encouragementFact = Fact(
         title: "Leading a New Lifestyle",
-        statement: "Lets abandon the conventional pattern of waste disposal and start sorting waste at home all the way to living a new lifestyle based on 3R (reduce, reuse, recycle) ~ (translated)",
+        statement: "Lets abandon the conventional pattern of waste disposal and start living a new lifestyle based on 3R (reduce, reuse, recycle) ~ (translated)",
         supportingFact: ["by Gatot Hendrarto - Deputy Secretary of Mental Revolution, Cultural Advancement, and Athletic Performance"],
         source: ["https://www.kemenkopmk.go.id/72-juta-ton-sampah-di-indonesia-belum-terkelola-dengan-baik"]
     )
     
     static let infoCollection = [
         indonesianWasteFact,
-//        southKoreaPopularityFact,
         koreanWasteFact,
         encouragementFact
     ]
     
 }
-
-
-
 
 
