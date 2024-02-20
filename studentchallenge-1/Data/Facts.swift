@@ -77,7 +77,7 @@ extension Fact {
         """
         South Korean culture enjoys widespread popularity in Indonesia, evident from the craze for K-dramas, beauty products, and Korean-themed restaurants.
         
-        South Korea also has a successful Waste-Disposal Policy and has proven to be an excellent role model for all nations in how to process their waste.
+        South Korea also has a successful Waste-Disposal Policy and has inspired other nations to take action.
         """,
         supportingFact: [
             "South Korea Entertainment and Media is popular in Indonesia",

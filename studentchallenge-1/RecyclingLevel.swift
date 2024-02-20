@@ -64,16 +64,19 @@ struct RecyclingLevel: View {
             VStack {
                 ZStack {
                     wasteComponents
-                    
-                    WasteBinChangeButton
+                        .border(.blue)
+        
                 }
                 
-                HStack {
+                HStack(alignment: .bottom) {
                     backButton
                     Spacer(minLength: 10)
+                    WasteBinChangeButton
+                        .padding(.trailing, 25)
+                        
                 }
                 .frame(width: geo.size.width)
-//                .border(.red)
+                .border(.red)
             }
             
         }
@@ -398,11 +401,13 @@ struct RecyclingLevel: View {
         }
     }
     
+    // MARK: WasteBinChangeButton
+    
     var WasteBinChangeButton: some View {
         
         // All Buttons Needed
         // Paper, Plastic, Glass, Metal
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 23) {
             
             
             Button(action: {currentWasteBin = WasteBin.GlassBottleBin}) {
@@ -410,32 +415,38 @@ struct RecyclingLevel: View {
                     Image(systemName: "wineglass")
                     Text(WasteBin.GlassBottleBin.nameEN)
                 }
+                .foregroundColor(.black)
+                .font(.system(size: 24, weight: .bold, design: .rounded))
+                
             }
-            .padding(.bottom, 10)
+//            .padding(.bottom, 10)
             
             Button(action: {currentWasteBin = WasteBin.PaperBin}) {
                 HStack {
                     Image(systemName: "newspaper")
                     Text(WasteBin.PaperBin.nameEN)
                 }
+                .font(.system(size: 24, weight: .bold, design: .rounded))
             }
-            .padding(.bottom, 10)
+//            .padding(.bottom, 10)
             
             Button(action: {currentWasteBin = WasteBin.PlasticBin}) {
                 HStack {
                     Image(systemName: "drop.triangle")
                     Text(WasteBin.PlasticBin.nameEN)
                 }
+                .font(.system(size: 24, weight: .bold, design: .rounded))
             }
-            .padding(.bottom, 10)
+//            .padding(.bottom, 10)
             
             Button(action: {currentWasteBin = WasteBin.MetalCanBin}) {
                 HStack {
-                    Image(systemName: "hexagon.fill")
+                    Image(systemName: "hexagon")
                     Text(WasteBin.MetalCanBin.nameEN)
                 }
+                .font(.system(size: 24, weight: .bold, design: .rounded))
             }
-            .padding(.bottom, 10)
+//            .padding(.bottom, 10)
             
             
         }
@@ -457,13 +468,11 @@ struct RecyclingLevel: View {
         return VStack {
             
             Text(theWaste.nameEN)
-                .font(.system(size: 28, design: .rounded))
-                .fontWeight(.heavy)
+                .font(.system(size: 28,weight: .heavy, design: .rounded))
                 .opacity(textOpacity)
             
             Text(theWaste.nameKR)
-                .font(.system(size: 36))
-                .fontWeight(.semibold)
+                .font(.system(size: 36, weight: .semibold))
                 .opacity(textOpacity)
                 .padding(.bottom, -12)
             
