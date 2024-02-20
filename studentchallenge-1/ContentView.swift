@@ -190,8 +190,8 @@ struct ContentView: View {
                 .resizable()
                 .scaledToFit()
                 .padding()
-                .frame(width: 500)
-                .padding(10)
+                .frame(width: 600)
+                .padding(30)
                 .shadow(radius: 5)
         
     }
