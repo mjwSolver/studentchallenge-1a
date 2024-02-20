@@ -102,7 +102,7 @@ extension WasteBin {
     static let GlassBottleBin = WasteBin(nameEN: "Glass Bottle Bin", nameKR: "유리류", imageName: "GlassBottleBin", description: "Glass Bottles", wasteCategory: .glass)
     static let MetalCanBin = WasteBin(nameEN: "Metal Bin", nameKR: "켄류", imageName: "MetalCanBin", description: "Metal Cans", wasteCategory: .metal)
     static let GeneralBin = WasteBin(nameEN: "General Bin", nameKR: "일반쓰레기통", imageName: "GeneralWasteBin", description: "General", wasteCategory: .general)
-    static let FoodWasteBin = WasteBin(nameEN: "Food Waste Bin", nameKR: "음식물 쓰레기", imageName: "", description: "Food", wasteCategory: .food)
+    static let FoodWasteBin = WasteBin(nameEN: "Food Waste Bin", nameKR: "음식물 쓰레기", imageName: "FoodWasteBin", description: "Food", wasteCategory: .food)
     
     static let allWasteBins = [
         PaperBin, PlasticBin, GlassBottleBin, MetalCanBin, GeneralBin, FoodWasteBin

@@ -13,6 +13,7 @@ struct RecyclingLevel: View {
     // MARK: Game Session Data
     @State var numberOfCollectedWaste = 0
     @State var currentWasteBin = WasteBin.GlassBottleBin
+    @State var showSuccessOverlay = false
     
     // For returning to the previous view
     @Environment(\.presentationMode) var presentationMode
@@ -61,23 +62,26 @@ struct RecyclingLevel: View {
     var body: some View {
         GeometryReader { geo in
             
-            VStack {
-                ZStack {
-                    wasteComponents
-                        .border(.blue)
-        
-                }
-                
-                HStack(alignment: .bottom) {
-                    backButton
-                    Spacer(minLength: 10)
-                    WasteBinChangeButton
-                        .padding(.trailing, 25)
+            if !showSuccessOverlay {
+                VStack {
+                    ZStack {
+                        wasteComponents
                         
+                    }
+                    
+                    HStack(alignment: .bottom) {
+                        backButton
+                        Spacer(minLength: 10)
+                        WasteBinChangeButton
+                            .padding(.trailing, 25)
+                        
+                    }
+                    .frame(width: geo.size.width)
                 }
-                .frame(width: geo.size.width)
-                .border(.red)
+            } else {
+                successView
             }
+            
             
         }
         
@@ -113,8 +117,24 @@ struct RecyclingLevel: View {
     
     /// Show the successView when all waste are sorted into the proper trash
     private var successView: some View {
-        return Circle()
+        
+        
+        VStack(alignment: .center) {
+            
+            Text("CONGRATULATIONS!")
+                .font(.system(size: 30))
+                .fontWeight(.heavy)
+//                .padding(.top, 16)
+//                .padding(.leading, 12)
+            
+        }
+        .padding(18)
+        .background(.white)
+        .cornerRadius(36)
+        .shadow(radius: 12)
     }
+    
+    // MARK: WasteComponents
     
     var wasteComponents: some View {
         
@@ -122,16 +142,17 @@ struct RecyclingLevel: View {
             
             // Define the  Initial / Starting CGPoints of each Waste Item
             let waste1Point: CGPoint = CGPoint(x: geo.size.width / 4, y: geo.size.height / 2.3)
-            let waste2Point: CGPoint = CGPoint(x: geo.size.width / 1.2, y: geo.size.height / 3.5)
+            let waste2Point: CGPoint = CGPoint(x: geo.size.width / 1.2, y: geo.size.height / 2.1)
             let waste3Point: CGPoint = CGPoint(x: geo.size.width / 1.4, y: geo.size.height / 8)
-            let waste4Point: CGPoint = CGPoint(x: geo.size.width / 2.1, y: geo.size.height / 3.5)
+            let waste4Point: CGPoint = CGPoint(x: geo.size.width / 2.3, y: geo.size.height / 4.9)
             let waste5Point: CGPoint = CGPoint(x: geo.size.width / 8, y: geo.size.height / 5)
-            let waste6Point: CGPoint = CGPoint(x: geo.size.width / 1.5, y: geo.size.height / 1.7)
+            let waste6Point: CGPoint = CGPoint(x: geo.size.width / 5.8, y: geo.size.height / 1.2)
             
             // Define the CGRect Parameters: CGPoint and CGSize
-            let wasteBagPoint = CGPoint(x: geo.size.width / 2, y: geo.size.height / 1.2)
+            let wasteBagPoint = CGPoint(x: geo.size.width / 2, y: geo.size.height / 1)
             let wasteBagShape = CGSize(width: geo.size.width / 6, height: geo.size.height / 8)
             
+            // CGRect for WasteBag
             let wasteBagRect = CGRect(
                 x: wasteBagPoint.x, y: wasteBagPoint.y,
                 width: wasteBagShape.width, height: wasteBagShape.height
@@ -405,48 +426,52 @@ struct RecyclingLevel: View {
     
     var WasteBinChangeButton: some View {
         
+        let buttonTextSize: CGFloat = 24.0
         // All Buttons Needed
         // Paper, Plastic, Glass, Metal
-        VStack(alignment: .leading, spacing: 23) {
+        return VStack(alignment: .trailing, spacing: 32) {
             
+            Text("Waste Bins")
+                .font(.system(size: buttonTextSize + 2, weight: .heavy, design: .rounded))
+                .underline()
+                .padding(.bottom, -10)
             
             Button(action: {currentWasteBin = WasteBin.GlassBottleBin}) {
-                HStack {
-                    Image(systemName: "wineglass")
+                HStack(spacing: 16) {
                     Text(WasteBin.GlassBottleBin.nameEN)
+                    Image(systemName: "wineglass")
                 }
-                .foregroundColor(.black)
-                .font(.system(size: 24, weight: .bold, design: .rounded))
+                .foregroundColor(.blue)
+                .font(.system(size: buttonTextSize, weight: .bold, design: .rounded))
                 
             }
-//            .padding(.bottom, 10)
             
             Button(action: {currentWasteBin = WasteBin.PaperBin}) {
-                HStack {
-                    Image(systemName: "newspaper")
+                HStack(spacing: 16) {
                     Text(WasteBin.PaperBin.nameEN)
+                    Image(systemName: "newspaper")
                 }
-                .font(.system(size: 24, weight: .bold, design: .rounded))
+                .font(.system(size: buttonTextSize, weight: .bold, design: .rounded))
             }
 //            .padding(.bottom, 10)
             
             Button(action: {currentWasteBin = WasteBin.PlasticBin}) {
-                HStack {
-                    Image(systemName: "drop.triangle")
+                HStack(spacing: 16) {
                     Text(WasteBin.PlasticBin.nameEN)
+                    Image(systemName: "drop.triangle")
                 }
-                .font(.system(size: 24, weight: .bold, design: .rounded))
+                .font(.system(size: buttonTextSize, weight: .bold, design: .rounded))
             }
 //            .padding(.bottom, 10)
             
             Button(action: {currentWasteBin = WasteBin.MetalCanBin}) {
-                HStack {
-                    Image(systemName: "hexagon")
+                HStack(spacing: 16) {
                     Text(WasteBin.MetalCanBin.nameEN)
+                    Image(systemName: "hexagon")
                 }
-                .font(.system(size: 24, weight: .bold, design: .rounded))
+                .font(.system(size: buttonTextSize, weight: .bold, design: .rounded))
             }
-//            .padding(.bottom, 10)
+
             
             
         }
