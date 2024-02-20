@@ -11,6 +11,7 @@ import SwiftUI
 struct RecyclingLevel: View {
     
     // MARK: Game Session Data
+    let totalNumberOfWaste = 6
     @State var numberOfCollectedWaste = 0
     @State var currentWasteBin = WasteBin.GlassBottleBin
     @State var showSuccessOverlay = false
@@ -19,12 +20,12 @@ struct RecyclingLevel: View {
     @Environment(\.presentationMode) var presentationMode
     
     // MARK: ALL Waste Data
-    let CrushedPlasticBottle: Waste = Waste.CrushedBottleGreen
-    let Newspaper: Waste = Waste.Newspaper
-    let CardboardBox: Waste = Waste.CardboardBox
-    let PlasticBottle: Waste = Waste.PlasticBottleWhite
-    let GlassJar: Waste = Waste.GlassJar
-    let MetalCan: Waste = Waste.MetalCan
+    let Waste1: Waste = Waste.CrushedBottleGreen
+    let Waste2: Waste = Waste.Newspaper
+    let Waste3: Waste = Waste.CardboardBox
+    let Waste4: Waste = Waste.PlasticBottleWhite
+    let Waste5: Waste = Waste.GlassJar
+    let Waste6: Waste = Waste.MetalCan
     
     // Positions of each waste on screen
     @State var waste1Position = CGPoint.zero
@@ -88,7 +89,7 @@ struct RecyclingLevel: View {
     }
     
     private var backButton: some View {
-
+        
         // Button to go back a view
         Button(action: {
             self.presentationMode.wrappedValue.dismiss()
@@ -107,13 +108,13 @@ struct RecyclingLevel: View {
                             .font(.system(size:28))
                             .foregroundColor(.white)
                     }
-
+                    
                 )
         }
         .padding(.leading, 20)
-
+        
     }
-
+    
     
     /// Show the successView when all waste are sorted into the proper trash
     private var successView: some View {
@@ -124,8 +125,8 @@ struct RecyclingLevel: View {
             Text("CONGRATULATIONS!")
                 .font(.system(size: 30))
                 .fontWeight(.heavy)
-//                .padding(.top, 16)
-//                .padding(.leading, 12)
+            //                .padding(.top, 16)
+            //                .padding(.leading, 12)
             
         }
         .padding(18)
@@ -165,9 +166,8 @@ struct RecyclingLevel: View {
                     .scaledToFit()
                     .frame(width:200)
                     .position(wasteBagPoint)
-                    
                 
-                createWasteContainer(theWaste: CrushedPlasticBottle, textOpacity: text1Opacity, frameSize: 90, scale: waste1Scale, opacity: waste1Opacity, position: waste1Position)
+                createWasteContainer(theWaste: Waste1, textOpacity: text1Opacity, frameSize: 90, scale: waste1Scale, opacity: waste1Opacity, position: waste1Position)
                     .gesture(DragGesture()
                         .onChanged{ value in
                             waste1Position = value.location
@@ -180,20 +180,20 @@ struct RecyclingLevel: View {
                             let wasteRect = CGRect(x: waste1Position.x, y: waste1Position.y, width: 100, height: 100)
                             
                             // If the waste meets the area of the waste bag, check if the category matches.
-                            
-                            if wasteRect.intersects(wasteBagRect) {
+                            if wasteRect.intersects(wasteBagRect) &&
+                                currentWasteBin.wasteCategory == Waste1.category {
                                 
-                                
-                                // If the category matches,
-                                // remove the waste from view.
+                                // Disappearing Animation to remove Waste from View
                                 withAnimation {
                                     waste1Scale = 0.0
                                     waste1Opacity = 0.1
                                 }
                                 
-                                // then increment the number of sorted waste
-                                
-                                // check if the number of sorted waste is 7
+                                // Increase Number CollectedWaete
+                                numberOfCollectedWaste += 1
+                                if numberOfCollectedWaste == totalNumberOfWaste {
+                                    showSuccessOverlay.toggle()
+                                }
                                 
                             } else {
                                 withAnimation {
@@ -204,45 +204,52 @@ struct RecyclingLevel: View {
                     )
                 
                 createWasteContainer(
-                    theWaste: Newspaper,
+                    theWaste: Waste2,
                     textOpacity: text2Opacity,
                     frameSize: 200,
                     scale: waste2Scale,
                     opacity: waste2Opacity,
                     position: waste2Position)
-                    .gesture(DragGesture()
-                        .onChanged{ value in
-                            waste2Position = value.location
-                            text2Opacity = 1.0
-                        }
-                        .onEnded{ value in
+                .gesture(DragGesture()
+                    .onChanged{ value in
+                        waste2Position = value.location
+                        text2Opacity = 1.0
+                    }
+                    .onEnded{ value in
+                        
+                        text2Opacity = 0
+                        
+                        let wasteRect = CGRect(x: waste2Position.x, y: waste2Position.y, width: 100, height: 100)
+                        
+                        // If the waste meets the area of the waste bag, check if the category matches.
+                        if wasteRect.intersects(wasteBagRect) &&
+                            currentWasteBin.wasteCategory == Waste2.category {
                             
-                            text2Opacity = 0
-                            
-                            let wasteRect = CGRect(x: waste2Position.x, y: waste2Position.y, width: 100, height: 100)
-                            
-                            if wasteRect.intersects(wasteBagRect) {
-                                
-                                // If the waste meets the area of the waste bag, check if the category matches.
-                                
-                                
-                                // If the category matches, remove the waste from view.
-                                withAnimation {
-                                    waste2Scale = 0.0
-                                    waste2Opacity = 0.1
-                                }
-                            } else {
-                                withAnimation {
-                                    waste2Position = waste2Point
-                                }
+                            // Disappearing Animation to remove Waste from View
+                            withAnimation {
+                                waste2Scale = 0.0
+                                waste2Opacity = 0.1
                             }
                             
+                            // Increase Number CollectedWaete
+                            numberOfCollectedWaste += 1
+                            if numberOfCollectedWaste == totalNumberOfWaste {
+                                showSuccessOverlay.toggle()
+                            }
+                            
+                        } else {
+                            withAnimation {
+                                waste2Position = waste2Point
+                            }
                         }
-                    )
+                        
+                    }
+                )
+                
                 
                 // Cardboard Box
                 createWasteContainer(
-                    theWaste: CardboardBox,
+                    theWaste: Waste3,
                     textOpacity: text3Opacity,
                     frameSize: 175,
                     scale: waste3Scale,
@@ -260,16 +267,20 @@ struct RecyclingLevel: View {
                         
                         let wasteRect = CGRect(x: waste3Position.x, y: waste3Position.y, width: 100, height: 100)
                         
-                        if wasteRect.intersects(wasteBagRect) {
+                        // If the waste meets the area of the waste bag, check if the category matches.
+                        if wasteRect.intersects(wasteBagRect) &&
+                            currentWasteBin.wasteCategory == Waste3.category {
                             
-                            // If the waste meets the area of the waste bag, check if the category matches.
-                            
-                            
-                            // If the category matches, remove the waste from view.
-                            
+                            // Disappearing Animation to remove Waste from View
                             withAnimation {
                                 waste3Scale = 0.0
                                 waste3Opacity = 0.1
+                            }
+                            
+                            // Increase Number CollectedWaete
+                            numberOfCollectedWaste += 1
+                            if numberOfCollectedWaste == totalNumberOfWaste {
+                                showSuccessOverlay.toggle()
                             }
                             
                         } else {
@@ -277,13 +288,13 @@ struct RecyclingLevel: View {
                                 waste3Position = waste3Point
                             }
                         }
-                        
                     }
+                         
                 )
                 
                 
                 createWasteContainer(
-                    theWaste: PlasticBottle,
+                    theWaste: Waste4,
                     textOpacity: text4Opacity,
                     frameSize: 75, scale:
                         waste4Scale,
@@ -301,22 +312,25 @@ struct RecyclingLevel: View {
                         
                         let wasteRect = CGRect(x: waste4Position.x, y: waste4Position.y, width: 100, height: 100)
                         
-                        if wasteRect.intersects(wasteBagRect) {
+                        // If the waste meets the area of the waste bag, check if the category matches.
+                        if wasteRect.intersects(wasteBagRect) &&
+                            currentWasteBin.wasteCategory == Waste4.category {
                             
-                            // If the waste meets the area of the waste bag, check if the category matches.
-                            
-                            
-                            // If the category matches, remove the waste from view.
-                            
+                            // Disappearing Animation to remove Waste from View
                             withAnimation {
                                 waste4Scale = 0.0
                                 waste4Opacity = 0.1
                             }
                             
+                            // Increase Number CollectedWaete
+                            numberOfCollectedWaste += 1
+                            if numberOfCollectedWaste == totalNumberOfWaste {
+                                showSuccessOverlay.toggle()
+                            }
+                            
                         } else {
                             withAnimation {
                                 waste4Position = waste4Point
-                                
                             }
                         }
                         
@@ -324,7 +338,7 @@ struct RecyclingLevel: View {
                 )
                 
                 // MelonRind
-                createWasteContainer(theWaste: GlassJar,
+                createWasteContainer(theWaste: Waste5,
                                      textOpacity: text5Opacity,
                                      frameSize: 80,
                                      scale: waste5Scale,
@@ -341,28 +355,33 @@ struct RecyclingLevel: View {
                         
                         let wasteRect = CGRect(x: waste5Position.x, y: waste5Position.y, width: 100, height: 100)
                         
-                        if wasteRect.intersects(wasteBagRect) {
+                        // If the waste meets the area of the waste bag, check if the category matches.
+                        if wasteRect.intersects(wasteBagRect) &&
+                            currentWasteBin.wasteCategory == Waste5.category {
                             
-                            // If the waste meets the area of the waste bag, check if the category matches.
-                            
-                            
-                            // If the category matches, remove the waste from view.
+                            // Disappearing Animation to remove Waste from View
                             withAnimation {
                                 waste5Scale = 0.0
                                 waste5Opacity = 0.1
                             }
+                            
+                            // Increase Number CollectedWaete
+                            numberOfCollectedWaste += 1
+                            if numberOfCollectedWaste == totalNumberOfWaste {
+                                showSuccessOverlay.toggle()
+                            }
+                            
                         } else {
                             withAnimation {
                                 waste5Position = waste5Point
                             }
                         }
-                        
                     }
                 )
                 
                 // MetalCan
                 
-                createWasteContainer(theWaste: MetalCan,
+                createWasteContainer(theWaste: Waste6,
                                      textOpacity: text6Opacity,
                                      frameSize: 100,
                                      scale: waste6Scale,
@@ -379,16 +398,22 @@ struct RecyclingLevel: View {
                         
                         let wasteRect = CGRect(x: waste6Position.x, y: waste6Position.y, width: 100, height: 100)
                         
-                        if wasteRect.intersects(wasteBagRect) {
+                        // If the waste meets the area of the waste bag, check if the category matches.
+                        if wasteRect.intersects(wasteBagRect) &&
+                            currentWasteBin.wasteCategory == Waste6.category {
                             
-                            // If the waste meets the area of the waste bag, check if the category matches.
-                            
-                            
-                            // If the category matches, remove the waste from view.
+                            // Disappearing Animation to remove Waste from View
                             withAnimation {
                                 waste6Scale = 0.0
                                 waste6Opacity = 0.1
                             }
+                            
+                            // Increase Number CollectedWaete
+                            numberOfCollectedWaste += 1
+                            if numberOfCollectedWaste == totalNumberOfWaste {
+                                showSuccessOverlay.toggle()
+                            }
+                            
                         } else {
                             withAnimation {
                                 waste6Position = waste6Point
@@ -453,7 +478,7 @@ struct RecyclingLevel: View {
                 }
                 .font(.system(size: buttonTextSize, weight: .bold, design: .rounded))
             }
-//            .padding(.bottom, 10)
+            //            .padding(.bottom, 10)
             
             Button(action: {currentWasteBin = WasteBin.PlasticBin}) {
                 HStack(spacing: 16) {
@@ -462,7 +487,7 @@ struct RecyclingLevel: View {
                 }
                 .font(.system(size: buttonTextSize, weight: .bold, design: .rounded))
             }
-//            .padding(.bottom, 10)
+            //            .padding(.bottom, 10)
             
             Button(action: {currentWasteBin = WasteBin.MetalCanBin}) {
                 HStack(spacing: 16) {
@@ -471,7 +496,7 @@ struct RecyclingLevel: View {
                 }
                 .font(.system(size: buttonTextSize, weight: .bold, design: .rounded))
             }
-
+            
             
             
         }
