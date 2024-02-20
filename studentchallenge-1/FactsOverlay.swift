@@ -12,8 +12,8 @@ struct FactsOverlay: View {
     @Binding var showFactsOverlay: Bool
     
     let theFacts = Fact.infoCollection
-    let overlayWidth:CGFloat = 950.0
-    let overlayHeight:CGFloat = 500.0
+    private let overlayWidth:CGFloat = 950.0
+    private let overlayHeight:CGFloat = 500.0
     
     @State var currentFactIndex = 0
     
@@ -34,7 +34,7 @@ struct FactsOverlay: View {
                 
                 VStack(alignment: .trailing) {
                     Text(currentFact.statement)
-                        .font(.system(size: 24))
+                        .font(.system(size: 28))
                         .fontWeight(.light)
                 }
                 .padding(.horizontal, 5)
@@ -53,7 +53,8 @@ struct FactsOverlay: View {
                     ForEach(0..<currentFact.supportingFact.count, id: \.self) { index in
                         Link("\(currentFact.supportingFact[index])",
                              destination: URL(string: currentFact.source[index])!)
-                        .padding(.vertical, 3)
+                        .padding(.vertical, 6)
+                        .font(.system(size: 18))
                     }
                 }
                 
@@ -115,8 +116,9 @@ struct FactsOverlay: View {
         .padding(18)
         .frame(width: overlayWidth, height: overlayHeight)
         .background(.white)
+        .opacity(0.90)
         .cornerRadius(36)
-        .shadow(radius: 12)
+        .shadow(radius: 18)
         
     }
     

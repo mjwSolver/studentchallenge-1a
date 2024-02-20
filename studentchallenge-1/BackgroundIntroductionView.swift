@@ -14,7 +14,7 @@ struct BackgroundIntroductionView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State var currentFactIndex = 0
-    @State var showFactsOverlay: Bool = false
+    @State var showFactsOverlay: Bool = true
     
     // MARK: View Outline
     /// Displays several facts from Facts.swift
@@ -29,16 +29,21 @@ struct BackgroundIntroductionView: View {
                 
                 ZStack {
                     
-                    // Buttons are the lowest layer
-                    VStack {
-                        allLevelButtons
-                    }
+                    Image("Landfill")
+                        .resizable()
+                        .scaledToFill()
+                        .blur(radius: 4)
+                        .ignoresSafeArea()
+                        
                     
                     // Show the facts
                     if showFactsOverlay {
                         FactsOverlay(showFactsOverlay: $showFactsOverlay)
+                    } else {
+                        VStack {
+                            allLevelButtons
+                        }
                     }
-
 
                     lowerButtons
                     
@@ -54,22 +59,41 @@ struct BackgroundIntroductionView: View {
     // MARK: All Buttons
     var allLevelButtons: some View {
         
-        VStack {
+        VStack(alignment: .center, spacing: 20) {
             
             NavigationLink(destination: RecyclingLevel()
                 .navigationBarBackButtonHidden()) {
-                    Text("Recycling Level")
-                        .font(.system(size:50))
+                    
+                    HStack(spacing: 24) {
+                        Image(systemName: "arrow.3.trianglepath")
+                            .foregroundColor(Color("RecycleGreen"))
+                        Text("Recycling Level")
+                            .foregroundColor(.white)
+                    }
+                    .font(.system(size:50, weight: .medium))
+                    .padding(24)
+                    .background(Color("SeuraegiPurple"))
+                    .cornerRadius(24)
+                    
                 }
-                .padding(.bottom, 10)
-            
             
             NavigationLink(destination: FoodnGeneralLevel()
                 .navigationBarBackButtonHidden()) {
-                    Text("Food and General Waste")
-                        .font(.system(size:50))
+                    
+                    HStack(spacing: 24) {
+                        Image(systemName: "fork.knife")
+                            .foregroundColor(Color("RecycleGreen"))
+                        Text("Food and General Waste")
+                            .foregroundColor(.white)
+                    }
+                    .font(.system(size:50, weight: .medium))
+                    .padding(24)
+                    .background(Color("SeuraegiPurple"))
+                    .cornerRadius(24)
+
                 }
         }
+        .shadow(radius: 10)
         
     }
     
@@ -85,7 +109,8 @@ struct BackgroundIntroductionView: View {
                 
                 homeScreenButton
             }
-            .padding(.bottom, 50)
+            .padding(.bottom, 100)
+            .shadow(radius: 5)
             // Center-aligned
             .position(x: geo.size.width / 2, y:geo.size.height / 1.02)
             // Left-aligned
@@ -125,10 +150,6 @@ struct BackgroundIntroductionView: View {
                             .foregroundColor(.white)
                     )
             }
-//            .padding(.bottom, 50)
-//            .position(x: geo.size.width / 2, y:geo.size.height / 1.01)
-            //        }
-//        }
         
         
     }

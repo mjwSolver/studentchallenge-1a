@@ -72,6 +72,7 @@ struct RecyclingLevel: View {
                     
                     HStack(alignment: .bottom) {
                         backButton
+                            .padding(.leading, 20)
                         Spacer(minLength: 10)
                         WasteBinChangeButton
                             .padding(.trailing, 25)
@@ -80,7 +81,8 @@ struct RecyclingLevel: View {
                     .frame(width: geo.size.width)
                 }
             } else {
-                successView
+                successOverlay
+                    .position(x: geo.size.width / 2, y: geo.size.height / 2)
             }
             
             
@@ -111,32 +113,38 @@ struct RecyclingLevel: View {
                     
                 )
         }
-        .padding(.leading, 20)
         
     }
     
-    
     /// Show the successView when all waste are sorted into the proper trash
-    private var successView: some View {
+    private var successOverlay: some View {
         
-        
-        VStack(alignment: .center) {
+        let overlayWidth:CGFloat = 950.0
+        let overlayHeight:CGFloat = 500.0
+    
+        return VStack(alignment: .center) {
             
             Text("CONGRATULATIONS!")
-                .font(.system(size: 30))
+                .font(.system(size: 48))
                 .fontWeight(.heavy)
-            //                .padding(.top, 16)
-            //                .padding(.leading, 12)
+
+            Text("You've sorted all the Waste!")
+                .font(.system(size: 36))
+                .fontWeight(.bold)
+            
+            backButton
+                .padding(.vertical, 15)
             
         }
         .padding(18)
+        .frame(width: overlayWidth, height: overlayHeight)
         .background(.white)
         .cornerRadius(36)
         .shadow(radius: 12)
+        
     }
     
     // MARK: WasteComponents
-    
     var wasteComponents: some View {
         
         GeometryReader { geo in
@@ -449,7 +457,7 @@ struct RecyclingLevel: View {
     
     // MARK: WasteBinChangeButton
     
-    var WasteBinChangeButton: some View {
+    private var WasteBinChangeButton: some View {
         
         let buttonTextSize: CGFloat = 24.0
         // All Buttons Needed
@@ -497,20 +505,12 @@ struct RecyclingLevel: View {
                 .font(.system(size: buttonTextSize, weight: .bold, design: .rounded))
             }
             
-            
-            
         }
         
     }
     
     // MARK: Functions
-    
-    func checkIfAllTrashIsSorted() {
-        if numberOfCollectedWaste == 6 {
-            self.presentationMode.wrappedValue.dismiss()
-        }
-    }
-    
+        
     func createWasteContainer(
         theWaste: Waste, textOpacity: Double, frameSize: CGFloat,
         scale: CGFloat, opacity: CGFloat, position: CGPoint
@@ -541,6 +541,7 @@ struct RecyclingLevel: View {
                 .opacity(textOpacity)
         )
         .scaleEffect(scale)
+        .opacity(opacity)
         .opacity(opacity)
         .position(position)
         

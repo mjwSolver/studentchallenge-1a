@@ -30,6 +30,12 @@ struct ContentView: View {
         NavigationStack {
             ZStack{
                 
+                Image("CleanLandfill")
+                    .resizable()
+                    .scaledToFill()
+                    .blur(radius: 3.5)
+                    .ignoresSafeArea()
+                
                 // The Falling Trash Component
                 fallingTrash
                 
@@ -62,7 +68,7 @@ struct ContentView: View {
         
         let allWaste = (Waste.allClusterWaste + Waste.allSingleWaste)
         let wasteSizeModifier:CGFloat = CGFloat(10.0)
-        let allWasteOpacity: Double = 0.5
+        let allWasteOpacity: Double = 0.85
                 
         return GeometryReader { geo in
             let endOfScreenPosition = geo.size.height
