@@ -14,7 +14,7 @@ struct BackgroundIntroductionView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State var currentFactIndex = 0
-    @State var showFactsOverlay: Bool = true
+    @State var showFactsOverlay: Bool = false
     
     // MARK: View Outline
     /// Displays several facts from Facts.swift
@@ -59,6 +59,7 @@ struct BackgroundIntroductionView: View {
             NavigationLink(destination: RecyclingLevel()
                 .navigationBarBackButtonHidden()) {
                     Text("Recycling Level")
+                        .font(.system(size:50))
                 }
                 .padding(.bottom, 10)
             
@@ -66,6 +67,7 @@ struct BackgroundIntroductionView: View {
             NavigationLink(destination: FoodnGeneralLevel()
                 .navigationBarBackButtonHidden()) {
                     Text("Food and General Waste")
+                        .font(.system(size:50))
                 }
         }
         

@@ -117,9 +117,9 @@
 				836E21662B73BEEE00B451EC /* BackgroundIntroductionView.swift */,
 				8330EAC32B61169400B1E62F /* Assets.xcassets */,
 				8330EAC52B61169400B1E62F /* studentchallenge_1.entitlements */,
-				8330EAC62B61169400B1E62F /* Preview Content */,
 				836E216B2B7A28A100B451EC /* FactsOverlay.swift */,
 				83FD77FE2B7E4AAC006D82BD /* SuccessOverlay.swift */,
+				8330EAC62B61169400B1E62F /* Preview Content */,
 			);
 			path = "studentchallenge-1";
 			sourceTree = "<group>";

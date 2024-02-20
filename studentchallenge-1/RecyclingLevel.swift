@@ -12,6 +12,7 @@ struct RecyclingLevel: View {
     
     // MARK: Game Session Data
     @State var numberOfCollectedWaste = 0
+    @State var currentWasteBin = WasteBin.GlassBottleBin
     
     // For returning to the previous view
     @Environment(\.presentationMode) var presentationMode
@@ -63,6 +64,8 @@ struct RecyclingLevel: View {
             VStack {
                 ZStack {
                     wasteComponents
+                    
+                    WasteBinChangeButton
                 }
                 
                 HStack {
@@ -131,11 +134,9 @@ struct RecyclingLevel: View {
                 width: wasteBagShape.width, height: wasteBagShape.height
             )
             
-            let wasteBag: WasteBin = WasteBin.GlassBottleBin
-            
             ZStack{
                 
-                Image(wasteBag.imageName)
+                Image(currentWasteBin.imageName)
                     .resizable()
                     .scaledToFit()
                     .frame(width:200)
@@ -395,6 +396,50 @@ struct RecyclingLevel: View {
                 
             }
         }
+    }
+    
+    var WasteBinChangeButton: some View {
+        
+        // All Buttons Needed
+        // Paper, Plastic, Glass, Metal
+        VStack(alignment: .leading) {
+            
+            
+            Button(action: {currentWasteBin = WasteBin.GlassBottleBin}) {
+                HStack {
+                    Image(systemName: "wineglass")
+                    Text(WasteBin.GlassBottleBin.nameEN)
+                }
+            }
+            .padding(.bottom, 10)
+            
+            Button(action: {currentWasteBin = WasteBin.PaperBin}) {
+                HStack {
+                    Image(systemName: "newspaper")
+                    Text(WasteBin.PaperBin.nameEN)
+                }
+            }
+            .padding(.bottom, 10)
+            
+            Button(action: {currentWasteBin = WasteBin.PlasticBin}) {
+                HStack {
+                    Image(systemName: "drop.triangle")
+                    Text(WasteBin.PlasticBin.nameEN)
+                }
+            }
+            .padding(.bottom, 10)
+            
+            Button(action: {currentWasteBin = WasteBin.MetalCanBin}) {
+                HStack {
+                    Image(systemName: "hexagon.fill")
+                    Text(WasteBin.MetalCanBin.nameEN)
+                }
+            }
+            .padding(.bottom, 10)
+            
+            
+        }
+        
     }
     
     // MARK: Functions

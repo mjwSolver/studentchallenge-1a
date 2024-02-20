@@ -19,5 +19,6 @@ struct SuccessOverlay: View {
 struct SuccessOverlay_Previews: PreviewProvider {
     static var previews: some View {
         SuccessOverlay()
+            .previewInterfaceOrientation(.landscapeLeft)
     }
 }

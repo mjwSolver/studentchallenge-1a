@@ -37,6 +37,13 @@ struct ContentView: View {
                     
                     // The Seuraegi Title Component
                     title
+                        .scaleEffect(self.titleScale)
+                        .onAppear {
+                            withAnimation(.easeInOut(duration: 4).repeatForever()){
+                                self.titleScale = 1.1
+                            }
+        
+                        }
                     
                     // Play Button -> BackgroundIntroductionView
                     NavigationLink(destination: BackgroundIntroductionView()
@@ -186,13 +193,6 @@ struct ContentView: View {
                 .frame(width: 500)
                 .padding(10)
                 .shadow(radius: 5)
-                .scaleEffect(self.titleScale)
-                .onAppear {
-                    withAnimation(.easeInOut(duration: 4).repeatForever()){
-                        self.titleScale = 1.1
-                    }
-                    
-                }
         
     }
     
@@ -221,5 +221,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .previewInterfaceOrientation(.landscapeLeft)
     }
 }
