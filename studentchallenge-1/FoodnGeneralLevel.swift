@@ -58,40 +58,36 @@ struct FoodnGeneralLevel: View {
     var body: some View {
         GeometryReader { geo in
             
-            if !showSuccessOverlay {
-                VStack {
-                    ZStack {
-                        Image("ParkBackground")
-                            .resizable()
-                            .scaledToFill()
-                            .blur(radius: 6)
-                            .ignoresSafeArea()
-                        
-                        wasteComponents
-                        
-                        VStack{
-                            Spacer(minLength: 10)
-                            HStack(alignment: .bottom) {
-                                backButton
-                                    .padding(.leading, 20)
-                                Spacer(minLength: 10)
-                                WasteBinChangeButton
-                                    .padding(.trailing, 25)
-                                
-                            }
-                            .padding(.bottom, 28)
-                            .frame(width: geo.size.width)
-                        }
-                    }
+            ZStack {
+                Image("ParkBackground")
+                    .resizable()
+                    .scaledToFill()
+                    .blur(radius: 6)
+                    .ignoresSafeArea()
+                
+                if !showSuccessOverlay {
                     
-
+                    wasteComponents
+                    
+                    VStack{
+                        Spacer(minLength: 10)
+                        HStack(alignment: .bottom) {
+                            backButton
+                                .padding(.leading, 20)
+                            Spacer(minLength: 10)
+                            WasteBinChangeButton
+                                .padding(.trailing, 25)
+                            
+                        }
+                        .padding(.bottom, 28)
+                        .frame(width: geo.size.width)
+                    }
+                } else {
+                    successOverlay
+                        .position(x: geo.size.width / 2, y: geo.size.height / 2)
+                        .transition(AnyTransition.scale.animation(.spring()))
                 }
-            } else {
-                successOverlay
-                    .position(x: geo.size.width / 2, y: geo.size.height / 2)
             }
-            
-            
         }
         
     }
