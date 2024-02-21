@@ -14,7 +14,7 @@ struct FoodnGeneralLevel: View {
     let totalNumberOfWaste = 5
     @State var numberOfCollectedWaste = 0
     @State var currentWasteBin = WasteBin.GeneralBin
-    @State var showSuccessOverlay = false
+    @State var showSuccessOverlay = true
     
     // For returning to the previous view
     @Environment(\.presentationMode) var presentationMode
@@ -126,9 +126,19 @@ struct FoodnGeneralLevel: View {
     
         return VStack(alignment: .center) {
             
-            Text("🎉 CONGRATULATIONS! 🎉")
-                .foregroundColor(Color("SeuraegiPurple"))
-                .font(.system(size: 48, weight: .heavy, design: .rounded))
+            HStack(spacing: 12) {
+                Image(systemName: "party.popper.fill")
+                    .foregroundColor(Color("RecycleGreen"))
+                    
+    //            Text("🎉 CONGRATULATIONS! 🎉")
+                Text("CONGRATULATIONS!")
+                    .foregroundColor(Color("SeuraegiPurple"))
+                
+                Image(systemName: "party.popper.fill")
+                    .foregroundColor(Color("RecycleGreen"))
+                
+            }
+            .font(.system(size: 48, weight: .heavy, design: .rounded))
             
             Text("You've sorted all the Waste!")
                 .font(.system(size: 36, weight: .bold, design: .rounded))
