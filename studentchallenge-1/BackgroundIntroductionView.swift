@@ -14,7 +14,7 @@ struct BackgroundIntroductionView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State var currentFactIndex = 0
-    @State var showFactsOverlay: Bool = true
+    @State var showFactsOverlay: Bool = false
     
     // MARK: View Outline
     /// Displays several facts from Facts.swift
@@ -68,11 +68,11 @@ struct BackgroundIntroductionView: View {
                         Image(systemName: "arrow.3.trianglepath")
                             .foregroundColor(Color("RecycleGreen"))
                         Text("Recycling Level")
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("SeuraegiPurple"))
                     }
-                    .font(.system(size:50, weight: .medium))
+                    .font(.system(size:50, weight: .medium, design: .rounded))
                     .padding(24)
-                    .background(Color("SeuraegiPurple"))
+                    .background(.white)
                     .cornerRadius(24)
                     
                 }
@@ -84,11 +84,11 @@ struct BackgroundIntroductionView: View {
                         Image(systemName: "fork.knife")
                             .foregroundColor(Color("RecycleGreen"))
                         Text("Food and General Waste")
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("SeuraegiPurple"))
                     }
-                    .font(.system(size:50, weight: .medium))
+                    .font(.system(size:50, weight: .medium, design: .rounded))
                     .padding(24)
-                    .background(Color("SeuraegiPurple"))
+                    .background(.white)
                     .cornerRadius(24)
 
                 }

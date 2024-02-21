@@ -126,15 +126,15 @@ struct FoodnGeneralLevel: View {
     
         return VStack(alignment: .center) {
             
-            Text("CONGRATULATIONS!")
-                .font(.system(size: 48))
-                .fontWeight(.heavy)
-
+            Text("🎉 CONGRATULATIONS! 🎉")
+                .foregroundColor(Color("SeuraegiPurple"))
+                .font(.system(size: 48, weight: .heavy, design: .rounded))
+            
             Text("You've sorted all the Waste!")
-                .font(.system(size: 36))
-                .fontWeight(.bold)
+                .font(.system(size: 36, weight: .bold, design: .rounded))
             
             backButton
+                .padding(.vertical, 12)
                 .padding(.vertical, 15)
             
         }
