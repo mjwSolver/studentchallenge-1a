@@ -160,7 +160,7 @@ struct BackgroundIntroductionView: View {
         static var previews: some View {
             Group {
                 BackgroundIntroductionView()
-                    .previewInterfaceOrientation(.landscapeLeft)
+                    .previewInterfaceOrientation(.landscapeRight)
                 
                 BackgroundIntroductionView()
                     .previewInterfaceOrientation(.portrait)

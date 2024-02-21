@@ -61,19 +61,30 @@ struct FoodnGeneralLevel: View {
             if !showSuccessOverlay {
                 VStack {
                     ZStack {
+                        Image("ParkBackground")
+                            .resizable()
+                            .scaledToFill()
+                            .blur(radius: 6)
+                            .ignoresSafeArea()
+                        
                         wasteComponents
                         
+                        VStack{
+                            Spacer(minLength: 10)
+                            HStack(alignment: .bottom) {
+                                backButton
+                                    .padding(.leading, 20)
+                                Spacer(minLength: 10)
+                                WasteBinChangeButton
+                                    .padding(.trailing, 25)
+                                
+                            }
+                            .padding(.bottom, 28)
+                            .frame(width: geo.size.width)
+                        }
                     }
                     
-                    HStack(alignment: .bottom) {
-                        backButton
-                            .padding(.leading, 20)
-                        Spacer(minLength: 10)
-                        WasteBinChangeButton
-                            .padding(.trailing, 25)
-                        
-                    }
-                    .frame(width: geo.size.width)
+
                 }
             } else {
                 successOverlay
@@ -170,6 +181,12 @@ struct FoodnGeneralLevel: View {
             }
             
         }
+        .padding(12)
+        .padding(.horizontal, 6)
+        .background(.white)
+        .opacity(0.9)
+        .cornerRadius(12)
+        
         
     }
     
@@ -180,13 +197,13 @@ struct FoodnGeneralLevel: View {
             
             // Define the  Initial / Starting CGPoints of each Waste Item
             let waste1Point: CGPoint = CGPoint(x: geo.size.width / 4, y: geo.size.height / 2.3)
-            let waste2Point: CGPoint = CGPoint(x: geo.size.width / 1.2, y: geo.size.height / 2.1)
+            let waste2Point: CGPoint = CGPoint(x: geo.size.width / 1.2, y: geo.size.height / 2.4)
             let waste3Point: CGPoint = CGPoint(x: geo.size.width / 1.4, y: geo.size.height / 8)
             let waste4Point: CGPoint = CGPoint(x: geo.size.width / 2.3, y: geo.size.height / 4.9)
-            let waste5Point: CGPoint = CGPoint(x: geo.size.width / 8, y: geo.size.height / 5)
+            let waste5Point: CGPoint = CGPoint(x: geo.size.width / 5.8, y: geo.size.height / 1.4)
             
             // Define the CGRect Parameters: CGPoint and CGSize
-            let wasteBagPoint = CGPoint(x: geo.size.width / 2, y: geo.size.height / 1)
+            let wasteBagPoint = CGPoint(x: geo.size.width / 2, y: geo.size.height / 1.5)
             let wasteBagShape = CGSize(width: geo.size.width / 6, height: geo.size.height / 8)
             
             // CGRect for WasteBag
@@ -466,8 +483,8 @@ struct FoodnGeneralLevel: View {
                 .stroke(Color("WasteGrey"), lineWidth: 4)
                 .opacity(textOpacity)
         )
+        .shadow(color: .white, radius: 12)
         .scaleEffect(scale)
-        .opacity(opacity)
         .opacity(opacity)
         .position(position)
         
